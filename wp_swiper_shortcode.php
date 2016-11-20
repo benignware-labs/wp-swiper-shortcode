@@ -17,8 +17,8 @@ Copyright 2016 benignware.com
 */
 function wp_swiper_shortcode_enqueue_scripts() {
   $vendor_assets_dir = 'assets';
-  wp_enqueue_script( 'swiper', plugin_dir_url( __FILE__ ) . $vendor_assets_dir . "Swiper/dist/js/swiper.jquery.js", array( 'jquery' ) );
-  wp_enqueue_style( 'swiper', plugin_dir_url( __FILE__ ) . $vendor_assets_dir . "Swiper/dist/css/swiper.css");
+  wp_enqueue_script( 'swiper', plugin_dir_url( __FILE__ ) . "assets/Swiper/dist/js/swiper.jquery.js", array( 'jquery' ) );
+  wp_enqueue_style( 'swiper', plugin_dir_url( __FILE__ ) . "assets/Swiper/dist/css/swiper.css");
 }
 
 add_action( 'wp_enqueue_scripts', 'wp_swiper_shortcode_enqueue_scripts' );
@@ -41,7 +41,7 @@ function wp_swiper_shortcode($atts = array(), $content = "") {
 
   $html_atts =
   // TODO: Camelize recursively
-  $options = copy($atts);
+  $options = array_merge(array(), $atts);
 
   $json = json_encode($options, JSON_UNESCAPED_SLASHES);
 
