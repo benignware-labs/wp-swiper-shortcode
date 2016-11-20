@@ -14,7 +14,7 @@ composer.lock
 
 # Build
 tmp
-dist
+/dist
 
 # Test
 test
@@ -23,5 +23,5 @@ test
 vendor
 
 # Include only jquery-findus from the assets directory
-assets/*
+/assets/*
 !assets/Swiper
