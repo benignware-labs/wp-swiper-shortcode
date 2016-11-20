@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "type": "wordpress-plugin",
   "license": "MIT",
-  "description": "A collection of action and filters for bootstrap based themes",
+  "description": "Swiper Shortcode for Wordpress",
   "homepage": "http://github.com/benignware-labs/wp-swiper-shortcode",
   "authors": [
     {
