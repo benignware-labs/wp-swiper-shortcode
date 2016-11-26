@@ -34,27 +34,35 @@ function wp_swiper_shortcode($atts = array(), $content = "") {
     'paginationClickable' =>  true,
     'nextButton' => '.swiper-button-next',
     'prevButton' => '.swiper-button-prev',
-    'scrollbar' => false
+    'scrollbar' => false,
+    'loop' => true,
+    'before' => '<div class="swiper">',
+    'after' => '</div>'
   ), $atts, 'swiper');
 
   $atts['class'].= strpos($atts['class'], 'swiper-container') === false ? ' swiper-container' : '';
 
-  $html_atts =
-  // TODO: Camelize recursively
-  $options = array_merge(array(), $atts);
-
-  $json = json_encode($options, JSON_UNESCAPED_SLASHES);
+  $options = array();
 
   // Create output
   $output = "";
+
+  $output.= $atts['before'];
   $output.= "<div";
+
   foreach ($atts as $name => $value) {
-    $output.= ' ' . $name . '="' . $value . '"';
+    if (in_array($name, $html_atts)) {
+      $output.= ' ' . $name . '="' . $value . '"';
+    } else {
+      $options[$name] = $value;
+    }
   }
   $output.= ">";
+
   $output.= "<div class=\"swiper-wrapper\">";
   $output.= do_shortcode($content);
   $output.= "</div>";
+
   if ($atts['pagination']) {
     $output.= '<div class="swiper-pagination"></div>';
   }
@@ -68,8 +76,11 @@ function wp_swiper_shortcode($atts = array(), $content = "") {
     $output.= '<div class="swiper-scrollbar"></div>';
   }
   $output.= "</div>";
+
+  $output.= $atts['after'];
+
   $output.= "<script type=\"text/javascript\">//<![CDATA[\n(function($, window) {\n";
-  $output.= "\t$('#{$atts['id']}').swiper(" . $json . ");\n";
+  $output.= "\t$('#{$atts['id']}').swiper(" . json_encode($options, JSON_UNESCAPED_SLASHES) . ");\n";
   $output.= "})(jQuery, window)\n//]]></script>\n";
   return $output;
 }
@@ -77,7 +88,9 @@ function wp_swiper_shortcode($atts = array(), $content = "") {
 add_shortcode('swiper', 'wp_swiper_shortcode');
 
 function wp_swiper_slide_shortcode($atts = array(), $content = "") {
-  $swiper_slide_options = array('');
+  $html_atts = array('id', 'class');
+  $options = array();
+
   $atts = shortcode_atts(array(
     'class' => 'swiper-slide',
     'before_content' => "<div class='swiper-slide-content'>",
@@ -86,26 +99,23 @@ function wp_swiper_slide_shortcode($atts = array(), $content = "") {
 
   $atts['class'].= strpos($atts['class'], 'swiper-container') === false ? ' swiper-slide' : '';
 
-  $options = array();
-  foreach ($atts as $name => $value) {
-    if (in_array($name, $swiper_slide_options) === true) {
-      unset($atts[$name]);
-      $options[$name] = $value;
-    }
-  }
   $json = json_encode($options, JSON_UNESCAPED_SLASHES);
 
   // Create output
   $output = "";
   $output.= "<div";
   foreach ($atts as $name => $value) {
-    $output.= ' ' . $name . '="' . $value . '"';
+    if (in_array($name, $html_atts)) {
+      $output.= ' ' . $name . '="' . $value . '"';
+    } else {
+      $options[$name] = $value;
+    }
   }
   $output.= ">";
 
-  $output.= $atts['before_content'];
+  $output.= $options['before_content'];
   $output.= do_shortcode( $content );
-  $output.= $atts['after_content'];
+  $output.= $options['after_content'];
 
   $output.= "</div>";
   return $output;
