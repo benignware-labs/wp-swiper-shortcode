@@ -15,6 +15,13 @@ License URI: https://opensource.org/licenses/MIT
 
 Copyright 2016 benignware.com
 */
+
+
+require_once('wp_swiper_caption_shortcode.php');
+require_once('wp_swiper_post_gallery.php');
+
+
+
 function wp_swiper_shortcode_enqueue_scripts() {
   $vendor_assets_dir = 'assets';
   wp_enqueue_script( 'swiper', plugin_dir_url( __FILE__ ) . "assets/Swiper/dist/js/swiper.jquery.js", array( 'jquery' ) );
@@ -113,15 +120,25 @@ function wp_swiper_slide_shortcode($atts = array(), $content = "") {
   }
   $output.= ">";
 
+  $pattern = "~\[\s*swiper_caption[^\]]*\](.*(?!swiper_caption))~";
+  $hit = preg_match($pattern, $content, $match);
+  $caption = $match ? do_shortcode($match[0]) : "";
+  $content = preg_replace($pattern, "", $content);
+
   $output.= $options['before_content'];
   $output.= do_shortcode( $content );
   $output.= $options['after_content'];
+
+  $output.= $caption;
 
   $output.= "</div>";
   return $output;
 }
 
 add_shortcode('swiper_slide', 'wp_swiper_slide_shortcode');
+
+
+
 
 function wp_swiper_shortcode_empty_paragraph_fix( $content ) {
 
