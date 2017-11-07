@@ -1,6 +1,6 @@
 {
   "name": "wp-swiper-shortcode",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "wordpress-plugin",
   "license": "MIT",
   "description": "Swiper Shortcode for Wordpress",
