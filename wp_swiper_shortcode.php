@@ -43,8 +43,8 @@ function wp_swiper_shortcode($atts = array(), $content = "") {
     'prevButton' => '.swiper-button-prev',
     'scrollbar' => false,
     'loop' => true,
-    'before' => '<div class="swiper">',
-    'after' => '</div>'
+    'before' => '',
+    'after' => ''
   ), $atts, 'swiper');
 
   $atts['class'].= strpos($atts['class'], 'swiper-container') === false ? ' swiper-container' : '';
@@ -100,8 +100,8 @@ function wp_swiper_slide_shortcode($atts = array(), $content = "") {
 
   $atts = shortcode_atts(array(
     'class' => 'swiper-slide',
-    'before_content' => "<div class='swiper-slide-content'>",
-    'after_content' => '</div>',
+    'before_content' => '',
+    'after_content' => '',
   ), $atts, 'swiper_slide');
 
   $atts['class'].= strpos($atts['class'], 'swiper-container') === false ? ' swiper-slide' : '';
@@ -136,8 +136,6 @@ function wp_swiper_slide_shortcode($atts = array(), $content = "") {
 }
 
 add_shortcode('swiper_slide', 'wp_swiper_slide_shortcode');
-
-
 
 
 function wp_swiper_shortcode_empty_paragraph_fix( $content ) {
