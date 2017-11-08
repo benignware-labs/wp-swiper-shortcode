@@ -22,7 +22,7 @@ require_once('wp_swiper_post_gallery.php');
 
 function wp_swiper_shortcode_enqueue_scripts() {
   $vendor_assets_dir = 'assets';
-  wp_enqueue_script( 'swiper', plugin_dir_url( __FILE__ ) . "assets/Swiper/dist/js/swiper.jquery.js", array( 'jquery' ) );
+  wp_enqueue_script( 'swiper', plugin_dir_url( __FILE__ ) . "assets/Swiper/dist/js/swiper.js", array( 'jquery' ) );
   wp_enqueue_style( 'swiper', plugin_dir_url( __FILE__ ) . "assets/Swiper/dist/css/swiper.css");
 }
 
@@ -100,7 +100,7 @@ function wp_swiper_shortcode($atts = array(), $content = "") {
   $output.= $atts['after'];
 
   $output.= "<script type=\"text/javascript\">//<![CDATA[\n(function($, window) {\n";
-  $output.= "\t$('#{$atts['id']}').swiper(" . json_encode($options, JSON_UNESCAPED_SLASHES) . ");\n";
+  $output.= "\tnew Swiper('#{$atts['id']}', " . json_encode($options, JSON_UNESCAPED_SLASHES) . ");\n";
   $output.= "})(jQuery, window)\n//]]></script>\n";
   return $output;
 }
