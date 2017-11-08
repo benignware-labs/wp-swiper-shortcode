@@ -40,17 +40,30 @@ Customize the default behaviour by using the `shortcode_atts_swiper`-filter
 
 ```php
 <?php
-# functions.php
-function shortcode_atts_swiper($atts) {
-  return array_merge($atts, array(
-    # Swiper options
-    'autoplay' => '4000',
+function shortcode_atts_swiper($out, $pairs, $atts, $shortcode) {
+  return array_merge($out, array(
     # Custom attributes
-    'id' => 'my-swiper' # Override auto-generated id
-    'class' => 'my-swiper-container' # Custom css class
-    'before' => '<div class="my-swiper">', # Prepend content
-    'after' => '</div>' # Append content
-  ));
+    'id' => 'swiper-' . uniqid(),
+    'class' => '',
+    'before' => '',
+    'before_content' => '',
+    'after' => '',
+    'after_content' => '<div class="swiper-pagination"></div>'
+      . '<div class="swiper-button-next"></div>'
+      . '<div class="swiper-button-prev"></div>'
+      . '<div class="swiper-scrollbar"></div>',
+    # Swiper options
+    'pagination' => array(
+      'el' => '.swiper-pagination',
+      'clickable' =>  true
+    ),
+    'navigation' => array(
+      'next_el' => '.swiper-button-next',
+      'prev_el' => '.swiper-button-prev'
+    ),
+    'scrollbar' => false,
+    'loop' => true
+  ), $atts);
 }
 add_filter( 'shortcode_atts_swiper', 'shortcode_atts_swiper' );
 ?>
