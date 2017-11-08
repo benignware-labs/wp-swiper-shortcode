@@ -20,8 +20,6 @@ Copyright 2016 benignware.com
 require_once('wp_swiper_caption_shortcode.php');
 require_once('wp_swiper_post_gallery.php');
 
-
-
 function wp_swiper_shortcode_enqueue_scripts() {
   $vendor_assets_dir = 'assets';
   wp_enqueue_script( 'swiper', plugin_dir_url( __FILE__ ) . "assets/Swiper/dist/js/swiper.jquery.js", array( 'jquery' ) );
@@ -30,58 +28,69 @@ function wp_swiper_shortcode_enqueue_scripts() {
 
 add_action( 'wp_enqueue_scripts', 'wp_swiper_shortcode_enqueue_scripts' );
 
+function wp_swiper_shortcode_camelize($string) {
+  return lcfirst(join(array_map('ucfirst', explode('_', $string))));
+}
+
+function wp_swiper_shortcode_map_keys($f, $xs) {
+  $out = array();
+  foreach ($xs as $key => $value) {
+    $out[$f($key)] = is_array($value) ? mapArrayKeys($f, $value) : $value;
+  }
+  return $out;
+}
 
 function wp_swiper_shortcode($atts = array(), $content = "") {
-  $html_atts = array('id', 'class');
-
+  $html_atts = array('id', 'class', 'title');
+  $custom_atts = array('before', 'after', 'after_content');
   $atts = shortcode_atts(array(
     'id' => 'swiper-' . uniqid(),
     'class' => '',
-    'pagination' => '.swiper-pagination',
-    'paginationClickable' =>  true,
-    'nextButton' => '.swiper-button-next',
-    'prevButton' => '.swiper-button-prev',
+    'pagination' => array(
+      'el' => '.swiper-pagination',
+      'clickable' =>  true
+    ),
+    'navigation' => array(
+      'next_el' => '.swiper-button-next',
+      'prev_el' => '.swiper-button-prev'
+    ),
     'scrollbar' => false,
     'loop' => true,
     'before' => '',
-    'after' => ''
+    'before_content' => '',
+    'after' => '',
+    'after_content' => '<div class="swiper-pagination"></div>'
+      . '<div class="swiper-button-next"></div>'
+      . '<div class="swiper-button-prev"></div>'
+      . '<div class="swiper-scrollbar"></div>'
   ), $atts, 'swiper');
 
   $atts['class'].= strpos($atts['class'], 'swiper-container') === false ? ' swiper-container' : '';
 
+  // Get camelized swiper options
   $options = array();
-
-  // Create output
-  $output = "";
-
-  $output.= $atts['before'];
-  $output.= "<div";
-
   foreach ($atts as $name => $value) {
-    if (in_array($name, $html_atts)) {
-      $output.= ' ' . $name . '="' . $value . '"';
-    } else {
+    if (!in_array($name, $html_atts) && !in_array($name, $custom_atts)) {
       $options[$name] = $value;
     }
   }
-  $output.= ">";
+  $options = wp_swiper_shortcode_map_keys('wp_swiper_shortcode_camelize', $options);
 
+  // Create output
+  $output = "";
+  $output.= $atts['before'];
+  $output.= "<div";
+  foreach ($atts as $name => $value) {
+    if (in_array($name, $html_atts)) {
+      $output.= ' ' . $name . '="' . $value . '"';
+    }
+  }
+  $output.= ">";
+  $output.= $atts['before_content'];
   $output.= "<div class=\"swiper-wrapper\">";
   $output.= do_shortcode($content);
   $output.= "</div>";
-
-  if ($atts['pagination']) {
-    $output.= '<div class="swiper-pagination"></div>';
-  }
-  if ($atts['nextButton']) {
-    $output.= '<div class="swiper-button-next"></div>';
-  }
-  if ($atts['prevButton']) {
-    $output.= '<div class="swiper-button-prev"></div>';
-  }
-  if ($atts['scrollbar']) {
-    $output.= '<div class="swiper-scrollbar"></div>';
-  }
+  $output.= $atts['after_content'];
   $output.= "</div>";
 
   $output.= $atts['after'];
