@@ -42,10 +42,21 @@ function wp_swiper_shortcode_map_keys($f, $xs) {
 
 function wp_swiper_shortcode($atts = array(), $content = "") {
   $html_atts = array('id', 'class', 'title');
-  $custom_atts = array('before', 'after', 'after_content');
+  $custom_atts = array('before', 'before_content', 'after', 'after_content');
   $atts = shortcode_atts(array(
+    # Element attributes
     'id' => 'swiper-' . uniqid(),
     'class' => '',
+    'title' => '',
+    # Custom attributes
+    'before' => '',
+    'before_content' => '',
+    'after' => '',
+    'after_content' => '<div class="swiper-pagination"></div>'
+      . '<div class="swiper-button-next"></div>'
+      . '<div class="swiper-button-prev"></div>'
+      . '<div class="swiper-scrollbar"></div>',
+    # Swiper options
     'pagination' => array(
       'el' => '.swiper-pagination',
       'clickable' =>  true
@@ -55,14 +66,7 @@ function wp_swiper_shortcode($atts = array(), $content = "") {
       'prev_el' => '.swiper-button-prev'
     ),
     'scrollbar' => false,
-    'loop' => true,
-    'before' => '',
-    'before_content' => '',
-    'after' => '',
-    'after_content' => '<div class="swiper-pagination"></div>'
-      . '<div class="swiper-button-next"></div>'
-      . '<div class="swiper-button-prev"></div>'
-      . '<div class="swiper-scrollbar"></div>'
+    'loop' => true
   ), $atts, 'swiper');
 
   $atts['class'].= strpos($atts['class'], 'swiper-container') === false ? ' swiper-container' : '';
