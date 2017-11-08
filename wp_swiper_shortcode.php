@@ -35,7 +35,7 @@ function wp_swiper_shortcode_camelize($string) {
 function wp_swiper_shortcode_map_keys($f, $xs) {
   $out = array();
   foreach ($xs as $key => $value) {
-    $out[$f($key)] = is_array($value) ? mapArrayKeys($f, $value) : $value;
+    $out[$f($key)] = is_array($value) ? wp_swiper_shortcode_map_keys($f, $value) : $value;
   }
   return $out;
 }
