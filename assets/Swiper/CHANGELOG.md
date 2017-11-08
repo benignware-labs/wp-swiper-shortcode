@@ -1,5 +1,74 @@
 # Change Log
 
+## [Swiper 4.0.5](https://github.com/nolimits4web/swiper/compare/v4.0.3...v4.0.5) - Released on November 7, 2017
+  * Fixed issue with not working `noSwiping` parameter
+  * Parallax now considers `slidesPerGroup` parameter
+  * Zoom: imporved gestures handling
+  * Pagination: fixed issues with wrong positioned dynamic-bullets when there are not enough slides
+  * Fixed issues with some effects being broken with enabled `breakpoints`
+  * Minor fixes
+
+## [Swiper 4.0.3](https://github.com/nolimits4web/swiper/compare/v4.0.2...v4.0.3) - Released on October 27, 2017
+  * Fixed Parallax opacity and scale transitions
+  * Better compatability with SSR by using dummy `document` object
+  * Fixed styles for dynamic pagination buttons in RTL mode
+  * Fixed issue with last pagination button not being active with `slidesPerView: 'auto'`
+  * Renamed build tasks: `build-dev` -> `build:dev`, `build-prod` -> `build:prod`
+
+## [Swiper 4.0.2](https://github.com/nolimits4web/swiper/compare/v4.0.1...v4.0.2) - Released on October 18, 2017
+  * Lazy loading support for Virtual slides
+  * Added `beforeResize` event
+  * Minor fixes
+
+## [Swiper 4.0.1](https://github.com/nolimits4web/swiper/compare/v4.0.0...v4.0.1) - Released on October 11, 2017
+  * Fixed issue with pagination being broken with loop mode
+  * Reworked `realIndex` calculation ordering
+  * ES-module files renamed (**possible breaking change**):
+    * `swiper.module.js` -> `swiper.esm.bundle.js` (exported by default)
+    * `swiper.modular.js` -> `swiper.esm.js`
+  * Minor fixes
+
+## [Swiper 4.0.0](https://github.com/nolimits4web/swiper/compare/v3.4.2...v4.0.0) - Released on October 4, 2017 🎉
+  * New API (check [Documentation](http://idangero.us/swiper/api/))
+  * Virtual Slides - new module that keeps in DOM just required amount of slides
+  * Source code has been fully rewritten in ES-next syntax
+  * Dist package contains additional ES-next modules:
+    * `swiper.module.js` - swiper bundle for `import Swiper from 'swiper'`
+    * `swiper.modular.js` - modular version for using Swiper with required components only
+  * New `scripts/build-config.js` for creating custom Swiper build with required components and custom color theme
+  * jQuery version of Swiper has been removed
+  * Imporved compatibility with server-side rendering
+  * Hundreds of improvements and fixes
+
+## Swiper 4.0.0-beta.4 - Released on September 20, 2017
+  * Fixed issue with draggable Scrollbar in RTL layout
+  * Minor fixes
+
+## Swiper 4.0.0-beta.3 - Released on September 13, 2017
+  * Dom7 update to latest version
+  * Small core refactoring to get better results within tree-shaking bundles
+
+## Swiper 4.0.0-beta.2 - Released on September 2, 2017
+  * Disable a11y by default
+  * Fixed issue with events sharing between multiple swipers
+  * Fixed issue with resize handling after destroy
+  * Few minor fixes
+
+## Swiper 4.0.0-beta.1 - Released on August 30, 2017
+  * Initial 4.0.0 release
+
+## Swiper 3.4.2 - Released on March 10, 2017
+  * Fixed an issue with lazy loading callbacks when swiper is destroyed
+  * New `onAfterResize` and `onBeforeResize` callbacks
+  * New `onKeyPress` callback when keyboard control is used
+  * Fixed Chrome+Windows issue with not clickable links that have "title" attribute
+  * Minor fixes
+
+## Swiper 3.4.1 - Released on December 13, 2016
+  * Fixed Zoom for RTL
+  * Improved slideToClickedSlide behavior when loop is enabled
+  * Minor fixes
+
 ## Swiper 3.4.0 - Released on October 16, 2016
   * **Custom build** available. Now you can create custom swiper build using the folowing modules: effects, lazy-load, scrollbar, controller, hashnav, history, keyboard, mousewheel, parallax, zoom, a11y. Using cli `gulp custom -zoom,effects,lazy-loading`
   * New **zoom** functionality that enables double tap and pinch to zoom slide's inner image:
@@ -35,6 +104,7 @@
   * New `onScroll` event/callback that triggers when swiping/scrolling happens with mousewheel
   * New `touchReleaseOnEdges` parameter to release touch events on slider edge position (beginning, end) and allow for further page scrolling
   * Multirow (slidesPerColumn) support for vertical direction, which is in this case becomes multicolumn
+  * `paginationBulletRender` now accepts `swiper` instance as a first argument, `paginationBulletRender(index, className)` -> `paginationBulletRender(swiper, index, className)`
   * New "swiper-slide-duplicate-active", "swiper-slide-duplicate-next", "swiper-slide-duplicate-prev" classes that will be added in loop mode to the slides representing duplicated looped slides
   * All css classes are now configurable via new parameters: lazyLoadingClass, notificationClass, containerModifierClass, paginationClickableClass, paginationModifierClass, lazyStatusLoadingClass, lazyStatusLoadedClass, lazyPreloaderClass, notificationClass, preloaderClass, zoomContainerClass, slideDuplicateActiveClass, slideDuplicateNextClass, slideDuplicatePrevClass
 
@@ -169,7 +239,7 @@
   * Better support for "Scroll Container". So now Swiper can be used as a scroll container with one single "scrollable"/"swipeable" slide
   * Added lazy loading for background images with `data-background` attribute on required elements
   * New "Sticky Free Mode" (with `freeModeSticky` parameter) which will snap to slides positions in free mode
-  * Fixed issues with lazy loading  
+  * Fixed issues with lazy loading
   * Fixed slide removing when loop mode is enabled
   * Fixed issues with Autoplay and Fade effect
   * Minor fixes
@@ -202,7 +272,7 @@
   * Fixed issues with Coverflow support on IE 10+
   * Hashnav now will update document hash after transition to prevent browsers UI lags, not in the beginning like before
   * Super basic support for IE 9 with swiper.jquery version. No animation and transitions, but basic stuff like switching slides/pagination/scrollbars works
-  
+
 
 ## Swiper 3.0.4 - Released on March 6, 2015
   * New Images Lazy Load component
