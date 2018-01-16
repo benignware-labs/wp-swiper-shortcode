@@ -14,7 +14,7 @@ Place inside post content
   [swiper_slide]
     Slide 2
   [/swiper_slide]
-[/siper]
+[/swiper]
 ```
 
 #### Embed in a template
@@ -30,7 +30,7 @@ Use output buffering in order to embed in a php-template
   [swiper_slide]
     Slide 2
   [/swiper_slide]
-[/siper]
+[/swiper]
 <?php ob_end_flush(); ?>
 ```
 
