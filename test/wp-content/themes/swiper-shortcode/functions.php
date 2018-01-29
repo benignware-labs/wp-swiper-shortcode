@@ -589,9 +589,11 @@ require get_parent_theme_file_path( '/inc/icon-functions.php' );
  * Render featured galleries as post thumbnail
  */
 function featured_galleries_post_thumbnail_html($html, $post_id) {
-	$post_gallery_ids = get_post_gallery_ids($post_id, 'string');
-	if (strlen($post_gallery_ids) > 0) {
-		$html = do_shortcode('[swiper_gallery ids="' . $post_gallery_ids . '"]');
+	if (function_exists('get_post_gallery_ids')) {
+		$post_gallery_ids = get_post_gallery_ids($post_id, 'string');
+		if (strlen($post_gallery_ids) > 0) {
+			$html = do_shortcode('[swiper_gallery ids="' . $post_gallery_ids . '"]');
+		}
 	}
 	return $html;
 }
