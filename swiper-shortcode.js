@@ -1,4 +1,4 @@
 import Swiper from 'swiper';
 
-let view = (window || global);
+const view = (window || global);
 view.Swiper = view.Swiper || Swiper;

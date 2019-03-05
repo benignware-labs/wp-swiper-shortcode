@@ -22,7 +22,7 @@ require_once('swiper-shortcode-caption.php');
 require_once('swiper-shortcode-gallery.php');
 
 function wp_swiper_shortcode_enqueue_scripts() {
-  wp_enqueue_script( 'swiper-shortcode', plugin_dir_url( __FILE__ ) . "dist/wp-swiper-shortcode.js" );
+  wp_enqueue_script( 'swiper-shortcode', plugin_dir_url( __FILE__ ) . "dist/swiper-shortcode.js" );
   wp_enqueue_style( 'swiper-shortcode', plugin_dir_url( __FILE__ ) . "dist/swiper-shortcode.css" );
 }
 
