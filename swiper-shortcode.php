@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: Swiper Shortcode
-Plugin URI: http://wordpress.org/extend/plugins/wp-swiper-shortcode
+Plugin URI: https://github.com/benignware-labs/wp-swiper-shortcode
 Description: Swiper integration for Wordpress
-Version: 0.0.7
+Version: 0.0.8
 Author: Rafael Nowrotek
 Author URI: http://benignware.com
 Author Email: mail@benignware.com
@@ -13,7 +13,7 @@ Network: false
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
-Copyright 2016-2018 benignware.com
+Copyright 2016-2019 benignware.com
 */
 
 require_once('swiper-shortcode-helpers.php');
@@ -112,9 +112,9 @@ function wp_swiper_shortcode($atts = array(), $content = "") {
 
   $output.= $atts['after'];
 
-  $output.= "<script type=\"text/javascript\">//<![CDATA[\n(function($, window) {\n";
+  $output.= "<script type=\"text/javascript\">//<![CDATA[\n(function() {\n";
   $output.= "\tnew Swiper('#{$html_atts['id']}', " . json_encode($options, JSON_UNESCAPED_SLASHES) . ");\n";
-  $output.= "})(jQuery, window)\n//]]></script>\n";
+  $output.= "})()\n//]]></script>\n";
   return $output;
 }
 

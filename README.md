@@ -107,9 +107,13 @@ Point terminal to your project root and start up the container.
 docker-compose up -d
 ```
 
-Open your browser at [http://localhost:8000](http://localhost:8000).
+Open your browser at [http://localhost:3000](http://localhost:3000).
 
-Go through Wordpress installation and activate Swiper Shortcode wordpress plugin.
+Go through Wordpress installation and activate Swiper Shortcode wordpress plugin or install via wpcli:
+
+```cli
+docker-compose run --rm wp-cli install-wp
+```
 
 ### Useful docker commands
 
