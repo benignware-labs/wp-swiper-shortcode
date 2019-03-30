@@ -585,10 +585,14 @@ require get_parent_theme_file_path( '/inc/customizer.php' );
  */
 require get_parent_theme_file_path( '/inc/icon-functions.php' );
 
+
+// Swiper examples
+
+
 /**
  * Render featured galleries as post thumbnail
  */
-function featured_galleries_post_thumbnail_html($html, $post_id) {
+add_filter( 'post_thumbnail_html', function($html, $post_id) {
 	if (function_exists('get_post_gallery_ids')) {
 		$post_gallery_ids = get_post_gallery_ids($post_id, 'string');
 		if (strlen($post_gallery_ids) > 0) {
@@ -596,5 +600,4 @@ function featured_galleries_post_thumbnail_html($html, $post_id) {
 		}
 	}
 	return $html;
-}
-add_filter( 'post_thumbnail_html', 'featured_galleries_post_thumbnail_html', 99, 5 );
+}, 99, 5 );

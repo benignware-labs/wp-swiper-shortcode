@@ -12,3 +12,6 @@ vendor
 
 # Parcel
 .cache
+
+# Content
+.uploads

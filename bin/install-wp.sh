@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-# docker-compose run --rm wp-cli install-wp
+# docker-compose run --rm wp install-wp
 
 # command: sh -c "sleep 20 && wp core install --path=/var/www/html --url=localhost --title=test --admin_user=test --admin_password=test --admin_email=test@example.com"
 
@@ -10,7 +10,7 @@ wp core install \
   --admin_user="wordpress" \
   --admin_password="wordpress" \
   --admin_email="admin@example.com" \
-  --url="http://localhost:8030" \
+  --url="http://localhost:8040" \
   --skip-email
 
 # Update permalink structure.

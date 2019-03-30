@@ -10,7 +10,7 @@ services:
       MYSQL_DATABASE: wordpress
     image: mysql:5.7
     volumes:
-    - db_data:/var/lib/mysql
+      - db_data:/var/lib/mysql
     restart: always
   wordpress:
     container_name: wordpress
@@ -19,16 +19,17 @@ services:
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
     depends_on:
-    - db
+      - db
     image: wordpress:latest
     ports:
-    - 8030:80
+      - 8040:80
     restart: always
     volumes:
-    - wordpress:/var/www/html
-    - .:/var/www/html/wp-content/plugins/swiper-shortcode
-    - ./test/fixtures/themes/swiper-shortcode:/var/www/html/wp-content/themes/swiper-shortcode
-    - ./test/fixtures/themes/swiper-shortcode-legacy:/var/www/html/wp-content/themes/swiper-shortcode-legacy
+      - wordpress:/var/www/html
+      - .:/var/www/html/wp-content/plugins/swiper-shortcode
+      - ./test/fixtures/themes/swiper-shortcode:/var/www/html/wp-content/themes/swiper-shortcode
+      - ./test/fixtures/themes/swiper-shortcode-legacy:/var/www/html/wp-content/themes/swiper-shortcode-legacy
+      - .uploads:/var/www/html/wp-content/uploads
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: phpmyadmin
@@ -36,7 +37,7 @@ services:
      - PMA_ARBITRARY=1
     restart: always
     ports:
-     - 8031:80
+     - 8041:80
     volumes:
      - /sessions
   composer:
@@ -45,13 +46,13 @@ services:
     command: install
     working_dir: /var/www/html
     depends_on:
-    - wordpress
+      - wordpress
     volumes:
-    - ./composer.lock:/var/www/html/composer.lock
-    - ./composer.json:/var/www/html/composer.json
-    - wordpress:/var/www/html
+      - ./composer.lock:/var/www/html/composer.lock
+      - ./composer.json:/var/www/html/composer.json
+      - wordpress:/var/www/html
     links:
-    - wordpress:wordpress
+      - wordpress
   wp:
     image: wordpress:cli
     user: '33:33'
@@ -60,10 +61,12 @@ services:
       - composer
     volumes:
       - wordpress:/var/www/html
-      - .:/var/www/html/wp-content/plugins/alphabetic
+      - .:/var/www/html/wp-content/plugins/swiper-shortcode
       - ./bin/install-wp.sh:/usr/local/bin/install-wp
+      - .wp-cli:/etc/X11/fs/.wp-cli/
     links:
       - db
+      - wordpress
     command: "--info"
 volumes:
   db_data:

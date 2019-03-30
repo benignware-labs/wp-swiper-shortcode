@@ -4,3 +4,38 @@
   width: 100%;
   min-height: 300px;
 }
+
+.swiper-slide {
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.swiper-gallery {
+  display: flex;
+  height: 400px;
+  flex-direction: column;
+  position: relative;
+}
+
+.swiper-thumbs {
+  min-height: 0;
+  box-sizing: border-box;
+  padding: 0;
+  flex: 0 0 120px;
+}
+
+.swiper-thumbs .swiper-slide {
+  width: 25%;
+  height: 120px;
+  opacity: 0.4;
+  background-size: cover;
+}
+
+.swiper-thumbs .swiper-slide-thumb-active {
+  opacity: 1;
+}
+
+.swiper-container + .swiper-thumbs {
+  margin-top: 0.5rem;
+}
