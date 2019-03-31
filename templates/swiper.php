@@ -21,7 +21,7 @@
   <?php endif; ?>
 
   <?php if ($options['navigation']): ?>
-    <div class="<?= $options['navigation']['prev_el'] ?>"></div>
-    <div class="<?= $options['navigation']['next_el'] ?>"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
   <?php endif; ?>
 </div>

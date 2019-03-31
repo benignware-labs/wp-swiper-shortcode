@@ -19,10 +19,9 @@
     <?php if ($options['pagination']): ?>
       <div class="swiper-pagination"></div>
     <?php endif; ?>
-
     <?php if ($options['navigation']): ?>
-      <div class="<?= $options['navigation']['prev_el'] ?>"></div>
-      <div class="<?= $options['navigation']['next_el'] ?>"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
     <?php endif; ?>
   </div>
   <?php if ($options['thumbs']): ?>

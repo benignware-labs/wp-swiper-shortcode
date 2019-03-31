@@ -8,7 +8,11 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  min-height: 300px;
+}
+
+.swiper-container:not(.swiper-thumbs),
+.swiper-container:not(.swiper-thumbs) .swiper-slide {
+  min-height: 370px;
 }
 
 .swiper-gallery {
@@ -17,21 +21,22 @@
   position: relative;
 }
 
+.swiper-gallery .swiper-container,
 .swiper-gallery .swiper-container .swiper-slide {
-  min-height: 400px;
+  min-height: 370px;
 }
 
 .swiper-thumbs {
   min-height: 0;
   box-sizing: border-box;
   padding: 0;
-  flex: 0 0 120px;
+  flex: 0 0 90px;
   overflow: hidden;
 }
 
 .swiper-thumbs .swiper-slide {
   width: 25%;
-  height: 120px;
+  height: 90px;
   opacity: 0.4;
   background-size: cover;
 }

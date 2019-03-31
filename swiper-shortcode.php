@@ -3,7 +3,7 @@
 Plugin Name: Swiper Shortcode
 Plugin URI: https://github.com/benignware-labs/wp-swiper-shortcode
 Description: Swiper integration for Wordpress
-Version: 0.0.13
+Version: 0.0.14
 Author: Rafael Nowrotek
 Author URI: http://benignware.com
 Author Email: mail@benignware.com
@@ -111,23 +111,17 @@ function wp_swiper_shortcode($atts = array(), $content = '') {
     'thumbs' => false,
     # Swiper options
     'pagination' => array(
-      'el' => '.swiper-pagination',
       'clickable' =>  true
     ),
-    'navigation' => array(
-      'next_el' => '.swiper-button-next',
-      'prev_el' => '.swiper-button-prev'
-    ),
+    'navigation' => true,
     'scrollbar' => false,
     'loop' => false,
-    'autoplay' => array(
-      'delay' => 5000
-    )
+    'autoplay' => false
   ), $atts, 'swiper');
 
   // Turn on loop when true is passed as a string
   if ($atts['loop'] === "true") {
-    $atts['autoplay'] = true;
+    $atts['loop'] = true;
   }
 
   // Turn on autoplay with default settings if "true" is being specified only
@@ -135,28 +129,6 @@ function wp_swiper_shortcode($atts = array(), $content = '') {
     $atts['autoplay'] = array(
       'delay' => 5000
     );
-  }
-
-  // Handle integer values on autoplay for the sake of backward-compatibility
-  if (is_numeric($atts['autoplay'])) {
-    $atts['autoplay'] = array(
-      'delay' => $atts['autoplay']
-    );
-  }
-
-  // Turn off navigation for falsy values
-  if (!$atts['autoplay'] || $atts['autoplay'] === "false") {
-    unset($atts['autoplay']);
-  }
-
-  // Turn off navigation for falsy values
-  if (!$atts['navigation'] || $atts['navigation'] === "false") {
-    unset($atts['navigation']);
-  }
-
-  // Turn off pavigation for falsy values
-  if (!$atts['pagination'] || $atts['pagination'] === "false") {
-    unset($atts['pagination']);
   }
 
   // Determine if we're dealing with a custom query
@@ -190,8 +162,49 @@ function wp_swiper_shortcode($atts = array(), $content = '') {
   // All the rest goes to Swiper
   $options = array_diff_assoc($atts, array_merge($html_atts, $custom_atts));
 
-  // Camelize Swiper options
-  $options = wp_swiper_shortcode_map_keys('wp_swiper_shortcode_camelize', $options);
+  // Handle integer values on autoplay for the sake of backward-compatibility
+  if (is_numeric($atts['autoplay'])) {
+    $options['autoplay'] = array(
+      'delay' => $atts['autoplay']
+    );
+  }
+
+  // Turn off autoplay for falsy values
+  if (!$atts['autoplay'] || $atts['autoplay'] === "false") {
+    unset($options['autoplay']);
+  }
+
+
+  // Inject navigation selectors
+  if ($atts['navigation']) {
+    if ($atts['navigation'] === 'false') {
+      unset($options['navigation']);
+    } else {
+      $options['navigation'] = is_array($atts['navigation']) ? $atts['navigation'] : array();
+      $options['navigation'] = array_merge(
+        $options['navigation'],
+        array(
+          'next_el' => '.swiper-button-next',
+          'prev_el' => '.swiper-button-prev'
+        )
+      );
+    }
+  }
+
+  // Inject pagination selectors
+  if ($atts['pagination']) {
+    if ($atts['pagination'] === 'false') {
+      unset($options['pagination']);
+    } else {
+      $options['pagination'] = is_array($atts['pagination']) ? $atts['pagination'] : array();
+      $options['pagination'] = array_merge(
+        $options['pagination'],
+        array(
+          'el' => '.swiper-pagination'
+        )
+      );
+    }
+  }
 
   // Retrieve slides from shortcode
   $slides = array();
@@ -321,7 +334,6 @@ function wp_swiper_shortcode($atts = array(), $content = '') {
     $options['thumbs']['swiper']['el'] = '.' . $thumbs_html_atts['id'];
   }
 
-
   // Get template
   $template = $atts['template'];
 
@@ -353,8 +365,13 @@ function wp_swiper_shortcode($atts = array(), $content = '') {
   }
 
   // Create script tag
+
+  // jsonify Swiper options
+  $json_options = wp_swiper_shortcode_map_keys('wp_swiper_shortcode_camelize', $options);
+  $json_options = json_encode($json_options, JSON_UNESCAPED_SLASHES);
+
   $output.= "<script type=\"text/javascript\">//<![CDATA[\n(function(Swiper) {\n";
-  $output.= "var options = " . json_encode($options, JSON_UNESCAPED_SLASHES) . ";\n";
+  $output.= "var options = " . $json_options . ";\n";
   $output.= "console.log(Swiper, JSON.stringify(options, null, 2));";
   $output.= "\tvar swiper = new Swiper('#{$html_atts['id']}', options);\n";
 
