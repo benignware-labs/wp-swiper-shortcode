@@ -63,20 +63,6 @@ function wp_swiper_shortcode_gallery($content = '', $attr = array()) {
   if (!empty($atts['include'])) {
     $args['include'] = $atts['include'];
 
-    /*
-    $query_args = array(
-      'include' => $atts['include'],
-      'post_status' => 'inherit',
-      'post_type' => 'attachment',
-      'post_mime_type' => 'image',
-      'order' => $atts['order'],
-      'orderby' => $atts['orderby']
-    );
-
-    $wp_query = new WP_QUERY($query_args);
-
-    */
-
     $_attachments = get_posts( $query_args );
     $attachments = array();
     foreach ($_attachments as $key => $val) {
@@ -92,22 +78,19 @@ function wp_swiper_shortcode_gallery($content = '', $attr = array()) {
 
   $style = $ratio > 0 ? "padding-bottom: " . ($ratio * 100) . "%; height: 0;" : "";
 
+  $swiper_atts = array_merge($atts, array(
+    'template' => addslashes($atts['template'])
+  ));
+
   $output = '';
 
-  /*
   if ($template) {
-    $output = wp_swiper_shortcode_render($template, array(
-      'html_atts' => $html_atts,
-      'slides' => $slides
-    ));
-  }
-  */
-
-
-  if ($template) {
-    $output = "[swiper template='$template' include='$include' thumbs='$thumbs']";
+    $output = "[swiper";
+    foreach ($swiper_atts as $key => $value) {
+      $output.= " $key='$value'";
+    }
+    $output.= "]";
   } else {
-    echo "NO TEMPLATE";
     $output = "[swiper]";
     $image_index = 0;
 
@@ -131,6 +114,5 @@ add_shortcode('swiper_gallery', 'wp_swiper_shortcode_gallery');
 
 
 add_filter( 'post_gallery', 'wp_swiper_shortcode_gallery', 10, 2 );
-
 
 ?>

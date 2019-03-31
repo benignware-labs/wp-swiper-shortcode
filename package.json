@@ -1,6 +1,6 @@
 {
   "name": "wp-swiper-shortcode",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "Swiper integration for Wordpress",
   "repository": {
     "type": "git",

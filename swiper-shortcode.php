@@ -3,7 +3,7 @@
 Plugin Name: Swiper Shortcode
 Plugin URI: https://github.com/benignware-labs/wp-swiper-shortcode
 Description: Swiper integration for Wordpress
-Version: 0.0.12
+Version: 0.0.13
 Author: Rafael Nowrotek
 Author URI: http://benignware.com
 Author Email: mail@benignware.com
@@ -17,7 +17,11 @@ Copyright 2016-2019 benignware.com
 */
 
 // Gutenberg breaks Wordpress galleries
-// add_filter('use_block_editor_for_post', `__return_false`);
+/*
+add_filter('use_block_editor_for_post', function() {
+  return false;
+});
+*/
 
 require_once('swiper-shortcode-helpers.php');
 require_once('swiper-shortcode-slide.php');
@@ -78,7 +82,6 @@ function wp_swiper_shortcode($atts = array(), $content = '') {
     'template'
   );
 
-
   if ( ! empty( $attr['ids'] ) ) {
     // 'ids' is explicitly ordered, unless you specify otherwise.
     if ( empty( $attr['orderby'] ) ) {
@@ -89,6 +92,8 @@ function wp_swiper_shortcode($atts = array(), $content = '') {
 
 
   $atts = shortcode_atts(array(
+    # HTML Attributes
+    'class' => '',
     # Query attributes
     // 'order' => 'ASC',
     // 'orderby' => 'menu_order ID',
@@ -114,13 +119,50 @@ function wp_swiper_shortcode($atts = array(), $content = '') {
       'prev_el' => '.swiper-button-prev'
     ),
     'scrollbar' => false,
-    'loop' => true
+    'loop' => false,
+    'autoplay' => array(
+      'delay' => 5000
+    )
   ), $atts, 'swiper');
-  // print_r($atts);
 
+  // Turn on loop when true is passed as a string
+  if ($atts['loop'] === "true") {
+    $atts['autoplay'] = true;
+  }
+
+  // Turn on autoplay with default settings if "true" is being specified only
+  if ($atts['autoplay'] === true || $atts['autoplay'] === "true") {
+    $atts['autoplay'] = array(
+      'delay' => 5000
+    );
+  }
+
+  // Handle integer values on autoplay for the sake of backward-compatibility
+  if (is_numeric($atts['autoplay'])) {
+    $atts['autoplay'] = array(
+      'delay' => $atts['autoplay']
+    );
+  }
+
+  // Turn off navigation for falsy values
+  if (!$atts['autoplay'] || $atts['autoplay'] === "false") {
+    unset($atts['autoplay']);
+  }
+
+  // Turn off navigation for falsy values
+  if (!$atts['navigation'] || $atts['navigation'] === "false") {
+    unset($atts['navigation']);
+  }
+
+  // Turn off pavigation for falsy values
+  if (!$atts['pagination'] || $atts['pagination'] === "false") {
+    unset($atts['pagination']);
+  }
+
+  // Determine if we're dealing with a custom query
   $is_custom_query = !empty($atts['include']);
-
   if ($is_custom_query) {
+    // Create custom query
     $args['include'] = $atts['include'];
 
     if ('RAND' === $order) {
@@ -139,12 +181,7 @@ function wp_swiper_shortcode($atts = array(), $content = '') {
     $wp_query = new WP_QUERY($query_args);
   }
 
-  $classes = array_merge(array(
-    'swiper-container'
-  ), array(
-    $atts['class']
-  ));
-
+  // Add swiper class
   $atts['class'].= strpos($atts['class'], 'swiper-container') === false ? ' swiper-container' : '';
 
   $html_atts = wp_swiper_shortcode_sanitize_atts($atts, $html_att_names);
@@ -273,7 +310,7 @@ function wp_swiper_shortcode($atts = array(), $content = '') {
       array(
         'spaceBetween' => 10,
         'slidesPerView' => 4,
-        'freeMode' => true,
+        'freeMode' => false,
         'watchSlidesVisibility' => true,
         'watchSlidesProgress' => true
       ),
@@ -327,14 +364,6 @@ function wp_swiper_shortcode($atts = array(), $content = '') {
   if ($is_fake_query || $is_custom_query) {
 
     wp_reset_query();
-    /*
-    $wp_query = $current_wp_query;
-    if ($is_fake_query) {
-      $wp_query = $current_wp_query;
-    } else {
-      wp_reset_query();
-    }
-    */
   }
 
   return $output;

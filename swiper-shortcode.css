@@ -2,20 +2,23 @@
 
 .swiper-container {
   width: 100%;
-  min-height: 300px;
 }
 
 .swiper-slide {
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+  min-height: 300px;
 }
 
 .swiper-gallery {
   display: flex;
-  height: 400px;
   flex-direction: column;
   position: relative;
+}
+
+.swiper-gallery .swiper-container .swiper-slide {
+  min-height: 400px;
 }
 
 .swiper-thumbs {
@@ -23,6 +26,7 @@
   box-sizing: border-box;
   padding: 0;
   flex: 0 0 120px;
+  overflow: hidden;
 }
 
 .swiper-thumbs .swiper-slide {

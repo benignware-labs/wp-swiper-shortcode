@@ -16,12 +16,14 @@
         </div>
       <?php endwhile; ?>
     </div>
-    <!-- If we need pagination -->
-    <div class="swiper-pagination"></div>
+    <?php if ($options['pagination']): ?>
+      <div class="swiper-pagination"></div>
+    <?php endif; ?>
 
-    <!-- If we need navigation buttons -->
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
+    <?php if ($options['navigation']): ?>
+      <div class="<?= $options['navigation']['prev_el'] ?>"></div>
+      <div class="<?= $options['navigation']['next_el'] ?>"></div>
+    <?php endif; ?>
   </div>
   <?php if ($options['thumbs']): ?>
     <div
