@@ -3,7 +3,7 @@
 Plugin Name: Swiper Shortcode
 Plugin URI: https://github.com/benignware-labs/wp-swiper-shortcode
 Description: Swiper integration for Wordpress
-Version: 0.0.10
+Version: 0.0.11s
 Author: Rafael Nowrotek
 Author URI: http://benignware.com
 Author Email: mail@benignware.com
@@ -175,9 +175,9 @@ function wp_swiper_shortcode($atts = array(), $content = '') {
       }
   }
 
+  $posts = array();
   if (count($slides) > 0) {
     // Create fake posts from slides
-    $posts = array();
     foreach ($slides as $index => $slide) {
       $post_id = (100 + $index) * -1;
 
