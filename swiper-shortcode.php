@@ -3,7 +3,7 @@
 Plugin Name: Swiper Shortcode
 Plugin URI: https://github.com/benignware-labs/wp-swiper-shortcode
 Description: Swiper integration for Wordpress
-Version: 0.0.14
+Version: 0.0.15
 Author: Rafael Nowrotek
 Author URI: http://benignware.com
 Author Email: mail@benignware.com
@@ -17,11 +17,11 @@ Copyright 2016-2019 benignware.com
 */
 
 // Gutenberg breaks Wordpress galleries
-/*
+
 add_filter('use_block_editor_for_post', function() {
   return false;
 });
-*/
+
 
 require_once('swiper-shortcode-helpers.php');
 require_once('swiper-shortcode-slide.php');
@@ -63,9 +63,10 @@ function wp_swiper_shortcode_empty_paragraph_fix( $content ) {
 
 add_filter( 'the_content', 'wp_swiper_shortcode_empty_paragraph_fix' );
 
-function wp_swiper_shortcode($atts = array(), $content = '') {
+function wp_swiper_shortcode($attr = array(), $content = '') {
   global $wp, $wp_query;
 
+  // HTML attributes
   $html_att_names = array(
     'id',
     'class',
@@ -74,37 +75,35 @@ function wp_swiper_shortcode($atts = array(), $content = '') {
 
   // Custom attributes
   $custom_att_names = array(
-    'include',
-    'exclude',
     'ids',
     'before',
     'after',
     'template'
   );
 
-  if ( ! empty( $attr['ids'] ) ) {
-    // 'ids' is explicitly ordered, unless you specify otherwise.
-    if ( empty( $attr['orderby'] ) ) {
-      $attr['orderby'] = 'post__in';
-    }
-    $attr['include'] = $attr['ids'];
-  }
-
+  $query_att_names = array(
+    'order',
+    'orderby',
+    'post_type',
+    'post_mime_type',
+    'post_status'
+  );
 
   $atts = shortcode_atts(array(
     # HTML Attributes
-    'class' => '',
-    # Query attributes
-    // 'order' => 'ASC',
-    // 'orderby' => 'menu_order ID',
-    'ids' => '',
-    'include' => '',
-    'exclude' => '',
-    # Element attributes
     'id' => 'swiper-container-' . uniqid(),
     'class' => '',
     'title' => '',
+    # Query attributes
+    'order' => 'ASC',
+    'orderby' => 'menu_order ID',
+    'post_status' => 'inherit',
+    'post_type' => null,
+    'post_mime_type' => null,
+    'include' => '',
+    'exclude' => '',
     # Custom attributes
+    'ids' => '',
     'before' => '',
     'after' => '',
     'template' => rtrim(__DIR__, '/') . '/templates/swiper.php',
@@ -117,7 +116,7 @@ function wp_swiper_shortcode($atts = array(), $content = '') {
     'scrollbar' => false,
     'loop' => false,
     'autoplay' => false
-  ), $atts, 'swiper');
+  ), $attr, 'swiper');
 
   // Turn on loop when true is passed as a string
   if ($atts['loop'] === "true") {
@@ -129,81 +128,6 @@ function wp_swiper_shortcode($atts = array(), $content = '') {
     $atts['autoplay'] = array(
       'delay' => 5000
     );
-  }
-
-  // Determine if we're dealing with a custom query
-  $is_custom_query = !empty($atts['include']);
-  if ($is_custom_query) {
-    // Create custom query
-    $args['include'] = $atts['include'];
-
-    if ('RAND' === $order) {
-      $orderby = 'none';
-    }
-
-    $query_args = array(
-      'include' => $atts['include'],
-      'post_status' => 'inherit',
-      'post_type' => 'attachment',
-      'post_mime_type' => 'image',
-      'order' => $atts['order'],
-      'orderby' => $atts['orderby']
-    );
-
-    $wp_query = new WP_QUERY($query_args);
-  }
-
-  // Add swiper class
-  $atts['class'].= strpos($atts['class'], 'swiper-container') === false ? ' swiper-container' : '';
-
-  $html_atts = wp_swiper_shortcode_sanitize_atts($atts, $html_att_names);
-  $custom_atts = wp_swiper_shortcode_sanitize_atts($atts, $custom_att_names);
-
-  // All the rest goes to Swiper
-  $options = array_diff_assoc($atts, array_merge($html_atts, $custom_atts));
-
-  // Handle integer values on autoplay for the sake of backward-compatibility
-  if (is_numeric($atts['autoplay'])) {
-    $options['autoplay'] = array(
-      'delay' => $atts['autoplay']
-    );
-  }
-
-  // Turn off autoplay for falsy values
-  if (!$atts['autoplay'] || $atts['autoplay'] === "false") {
-    unset($options['autoplay']);
-  }
-
-
-  // Inject navigation selectors
-  if ($atts['navigation']) {
-    if ($atts['navigation'] === 'false') {
-      unset($options['navigation']);
-    } else {
-      $options['navigation'] = is_array($atts['navigation']) ? $atts['navigation'] : array();
-      $options['navigation'] = array_merge(
-        $options['navigation'],
-        array(
-          'next_el' => '.swiper-button-next',
-          'prev_el' => '.swiper-button-prev'
-        )
-      );
-    }
-  }
-
-  // Inject pagination selectors
-  if ($atts['pagination']) {
-    if ($atts['pagination'] === 'false') {
-      unset($options['pagination']);
-    } else {
-      $options['pagination'] = is_array($atts['pagination']) ? $atts['pagination'] : array();
-      $options['pagination'] = array_merge(
-        $options['pagination'],
-        array(
-          'el' => '.swiper-pagination'
-        )
-      );
-    }
   }
 
   // Retrieve slides from shortcode
@@ -300,6 +224,76 @@ function wp_swiper_shortcode($atts = array(), $content = '') {
 
   $is_fake_query = count($posts) > 0;
 
+  // Determine if we're dealing with a custom query
+  if (!$is_fake_query) {
+    // Create custom query
+    $query_args = array_intersect_key($atts, array_flip($query_att_names));
+
+    $query_args = array_merge(
+      $query_args,
+      array(
+        'post__in' => explode(',', $atts['include']) ?: '',
+        'orderby' => $query_args['order'] === 'RAND' ? 'none' : $query_args['orderby']
+      )
+    );
+
+    $wp_query = new WP_QUERY($query_args);
+  }
+
+  // Add swiper class
+  $atts['class'] .= strpos($atts['class'], 'swiper-container') === false ? ' swiper-container' : '';
+
+  $html_atts = array_intersect_key($atts, array_flip($html_att_names));
+  $custom_atts = array_intersect_key($atts, array_flip($custom_att_names));
+
+  // All the rest goes to Swiper
+  $options = array_diff_assoc($atts, array_merge($html_atts, $custom_atts));
+
+  // Handle integer values on autoplay for the sake of backward-compatibility
+  if (is_numeric($atts['autoplay'])) {
+    $options['autoplay'] = array(
+      'delay' => $atts['autoplay']
+    );
+  }
+
+  // Turn off autoplay for falsy values
+  if (!$atts['autoplay'] || $atts['autoplay'] === "false") {
+    unset($options['autoplay']);
+  }
+
+  // Inject navigation selectors
+  if ($atts['navigation']) {
+    if ($atts['navigation'] === 'false') {
+      unset($options['navigation']);
+    } else {
+      $options['navigation'] = is_array($atts['navigation']) ? $atts['navigation'] : array();
+      $options['navigation'] = array_merge(
+        $options['navigation'],
+        array(
+          'next_el' => '.swiper-button-next',
+          'prev_el' => '.swiper-button-prev'
+        )
+      );
+    }
+  }
+
+  // Inject pagination selectors
+  if ($atts['pagination']) {
+    if ($atts['pagination'] === 'false') {
+      unset($options['pagination']);
+    } else {
+      $options['pagination'] = is_array($atts['pagination']) ? $atts['pagination'] : array();
+      $options['pagination'] = array_merge(
+        $options['pagination'],
+        array(
+          'el' => '.swiper-pagination'
+        )
+      );
+    }
+  }
+
+
+
   // Thumbnails
   $thumbs_html_atts = array(
     'id' => 'swiper-thumbs-' . uniqid(),
@@ -372,16 +366,12 @@ function wp_swiper_shortcode($atts = array(), $content = '') {
 
   $output.= "<script type=\"text/javascript\">//<![CDATA[\n(function(Swiper) {\n";
   $output.= "var options = " . $json_options . ";\n";
-  $output.= "console.log(Swiper, JSON.stringify(options, null, 2));";
+  // $output.= "console.log(Swiper, JSON.stringify(options, null, 2));";
   $output.= "\tvar swiper = new Swiper('#{$html_atts['id']}', options);\n";
 
   $output.= "})(window.Swiper)\n//]]></script>\n";
 
-
-  if ($is_fake_query || $is_custom_query) {
-
-    wp_reset_query();
-  }
+  wp_reset_query();
 
   return $output;
 }
