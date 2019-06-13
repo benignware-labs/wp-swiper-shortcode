@@ -1,2 +1,278 @@
-.blocks-gallery-item figure:not(.is-selected):focus{outline:none}.blocks-gallery-item.is-selected{outline-color:#3484b5}.blocks-gallery-item.is-transient img{opacity:0.3}.blocks-gallery-item .block-editor-rich-text{position:absolute;bottom:0;width:100%;max-height:100%;overflow-y:auto}.blocks-gallery-item .block-editor-rich-text figcaption:not([data-is-placeholder-visible="true"]){position:relative;overflow:hidden}@supports ((position: -webkit-sticky) or (position: sticky)){.blocks-gallery-item.is-selected .block-editor-rich-text{right:0;left:0;margin-top:-4px}}.blocks-gallery-item.is-selected .block-editor-rich-text .block-editor-rich-text__inline-toolbar{top:0}.blocks-gallery-item.is-selected .block-editor-rich-text figcaption{padding-top:48px}.blocks-gallery-item.is-selected .block-library-gallery-item__move-menu,.blocks-gallery-item.is-selected .block-library-gallery-item__inline-menu{background-color:#3484b5}.blocks-gallery-item.is-selected .block-library-gallery-item__move-menu .components-button,.blocks-gallery-item.is-selected .block-library-gallery-item__inline-menu .components-button{color:#fff}.blocks-gallery-item.is-selected .block-library-gallery-item__move-menu .components-button:focus,.blocks-gallery-item.is-selected .block-library-gallery-item__inline-menu .components-button:focus{color:inherit}.blocks-gallery-item .block-editor-rich-text figcaption a{color:#fff}.block-library-gallery-item__move-menu,.block-library-gallery-item__inline-menu{padding:2px;display:-ms-inline-flexbox;display:inline-flex;z-index:20}.block-library-gallery-item__move-menu .components-button,.block-library-gallery-item__inline-menu .components-button{color:transparent}.block-library-gallery-item__inline-menu{position:absolute;top:-2px;right:-2px}.block-library-gallery-item__move-menu{position:absolute;top:-2px;left:-2px}.blocks-gallery-item__move-backward,.blocks-gallery-item__move-forward,.blocks-gallery-item__remove{padding:0}.blocks-gallery-item .components-spinner{position:absolute;top:50%;left:50%;margin-top:-9px;margin-left:-9px}.blocks-gallery-item.is-selected{z-index:1}.block-library-gallery-item__inline-menu,.block-library-gallery-item__move-menu{display:none}.blocks-gallery-item.is-selected .block-library-gallery-item__inline-menu,.blocks-gallery-item.is-selected .block-library-gallery-item__move-menu{display:block}
-.wp-block-swiper-swiper .swiper-slide>.editor-block-list__block-edit,.wp-block-swiper-swiper .swiper-slide>.editor-block-list__block-edit>*[data-block],.wp-block-swiper-swiper .swiper-slide>.editor-block-list__block-edit>*[data-block]>.block-swiper-swiper-slide{height:100%}.wp-block-swiper-swiper .swiper-wrapper *{-webkit-box-sizing:border-box;box-sizing:border-box}.edit-post-visual-editor .wp-block-swiper-swiper .swiper-slide>.editor-block-list__block-edit{margin-left:0;margin-right:0}.wp-block-swiper-swiper .block-swiper-swiper-slide>.block-editor-block-list__layout{margin-left:-14px;margin-right:-14px}.wp-block-swiper-swiper .block-swiper-swiper-slide{margin-top:-32px}.wp-block-swiper-swiper .swiper-slide *{-webkit-box-sizing:border-box;box-sizing:border-box}.wp-block-swiper-swiper .swiper-container{width:100%;overflow:visible}.wp-block-swiper-swiper .swiper-slide{height:auto}.wp-block-swiper-swiper>.editor-inner-blocks>.block-editor-block-list__layout,.wp-block-swiper-swiper>div>.editor-inner-blocks>.block-editor-block-list__layout{margin-left:0;margin-right:0}.wp-block-swiper-swiper .block-swiper-swiper-slide.is-selected{position:relative}.wp-block-swiper-swiper .block-swiper-swiper-slide.is-selected:after{content:'';position:absolute;left:0;top:0;-webkit-box-sizing:border-box;box-sizing:border-box;pointer-events:none;width:100%;height:100%;background:-webkit-gradient(linear, left top, right top, color-stop(50%, #3484b5), color-stop(50%, transparent)),-webkit-gradient(linear, left top, right top, color-stop(50%, #3484b5), color-stop(50%, transparent)),-webkit-gradient(linear, left bottom, left top, color-stop(50%, #3484b5), color-stop(50%, transparent)),-webkit-gradient(linear, left bottom, left top, color-stop(50%, #3484b5), color-stop(50%, transparent));background:-webkit-linear-gradient(left, #3484b5 50%, transparent 50%),-webkit-linear-gradient(left, #3484b5 50%, transparent 50%),-webkit-linear-gradient(bottom, #3484b5 50%, transparent 50%),-webkit-linear-gradient(bottom, #3484b5 50%, transparent 50%);background:-o-linear-gradient(left, #3484b5 50%, transparent 50%),-o-linear-gradient(left, #3484b5 50%, transparent 50%),-o-linear-gradient(bottom, #3484b5 50%, transparent 50%),-o-linear-gradient(bottom, #3484b5 50%, transparent 50%);background:linear-gradient(90deg, #3484b5 50%, transparent 50%),linear-gradient(90deg, #3484b5 50%, transparent 50%),linear-gradient(0deg, #3484b5 50%, transparent 50%),linear-gradient(0deg, #3484b5 50%, transparent 50%);background-repeat:repeat-x, repeat-x, repeat-y, repeat-y;background-size:calc(2px * 4) 2px,calc((2px * 4)) 2px,2px calc(2px * 4),2px calc((2px * 4));background-position:0px 0px,100% 100%,0px 100%,100% 0px;padding:10px;-webkit-animation:border-dance 4s infinite linear;animation:border-dance 4s infinite linear}@-webkit-keyframes border-dance{0%{background-position:0px 0px,300px calc(100%),0px 150px,calc(100%) 0px}100%{background-position:300px 0px,0px calc(100%),0px 0px,calc(100%) 150px}}@keyframes border-dance{0%{background-position:0px 0px,300px calc(100%),0px 150px,calc(100%) 0px}100%{background-position:300px 0px,0px calc(100%),0px 0px,calc(100%) 150px}}.wp-block-swiper-swiper .swiper-container{width:100%;overflow:visible}.wp-block-swiper-swiper .swiper-container.is-animating{overflow:hidden}.wp-block-swiper-swiper .swiper-container:not(.is-animating) .swiper-slide:not(.swiper-slide-visible){visibility:hidden}.wp-block-swiper-swiper .swiper-slide-active{z-index:1}video{width:100%}
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+/**
+ * Breakpoint mixins
+ */
+/**
+ * Long content fade mixin
+ *
+ * Creates a fading overlay to signify that the content is longer
+ * than the space allows.
+ */
+/**
+ * Button states and focus styles
+ */
+/**
+ * Applies editor left position to the selector passed as argument
+ */
+/**
+ * Applies editor right position to the selector passed as argument
+ */
+/**
+ * Styles that are reused verbatim in a few places
+ */
+/**
+ * Allows users to opt-out of animations via OS-level preferences.
+ */
+/**
+ * Reset default styles for JavaScript UI based pages.
+ * This is a WP-admin agnostic reset
+ */
+/**
+ * Reset the WP Admin page styles for Gutenberg-like pages.
+ */
+/**
+ * Breakpoints & Media Queries
+ */
+/**
+ * Colors
+ */
+/**
+ * Often re-used variables
+ */
+/*ul.wp-block-gallery {
+	// Override the default list style type _only in the editor_
+	// to avoid :not() selector specificity issues.
+	// See https://github.com/WordPress/gutenberg/pull/10358
+	li {
+		list-style-type: none;
+	}
+
+	// Override the bottom margin every block gets.
+	.is-selected & {
+		margin-bottom: 0;
+	}
+}*/
+.blocks-gallery-item figure:not(.is-selected):focus {
+  outline: none; }
+
+.blocks-gallery-item.is-selected {
+  outline-color: #3484b5; }
+
+.blocks-gallery-item.is-transient img {
+  opacity: 0.3; }
+
+.blocks-gallery-item .block-editor-rich-text {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  max-height: 100%;
+  overflow-y: auto; }
+
+.blocks-gallery-item .block-editor-rich-text figcaption:not([data-is-placeholder-visible="true"]) {
+  position: relative;
+  overflow: hidden; }
+
+@supports ((position: -webkit-sticky) or (position: sticky)) {
+  .blocks-gallery-item.is-selected .block-editor-rich-text {
+    right: 0;
+    left: 0;
+    margin-top: -4px; } }
+
+.blocks-gallery-item.is-selected .block-editor-rich-text .block-editor-rich-text__inline-toolbar {
+  top: 0; }
+
+.blocks-gallery-item.is-selected .block-editor-rich-text figcaption {
+  padding-top: 48px; }
+
+.blocks-gallery-item.is-selected .block-library-gallery-item__move-menu,
+.blocks-gallery-item.is-selected .block-library-gallery-item__inline-menu {
+  background-color: #3484b5; }
+  .blocks-gallery-item.is-selected .block-library-gallery-item__move-menu .components-button,
+  .blocks-gallery-item.is-selected .block-library-gallery-item__inline-menu .components-button {
+    color: #fff; }
+  .blocks-gallery-item.is-selected .block-library-gallery-item__move-menu .components-button:focus,
+  .blocks-gallery-item.is-selected .block-library-gallery-item__inline-menu .components-button:focus {
+    color: inherit; }
+
+.blocks-gallery-item .block-editor-rich-text figcaption a {
+  color: #fff; }
+
+.block-library-gallery-item__move-menu,
+.block-library-gallery-item__inline-menu {
+  padding: 2px;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  z-index: 20; }
+  .block-library-gallery-item__move-menu .components-button,
+  .block-library-gallery-item__inline-menu .components-button {
+    color: transparent; }
+
+.block-library-gallery-item__inline-menu {
+  position: absolute;
+  top: -2px;
+  right: -2px; }
+
+.block-library-gallery-item__move-menu {
+  position: absolute;
+  top: -2px;
+  left: -2px; }
+
+.blocks-gallery-item__move-backward,
+.blocks-gallery-item__move-forward,
+.blocks-gallery-item__remove {
+  padding: 0; }
+
+.blocks-gallery-item .components-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -9px;
+  margin-left: -9px; }
+
+.blocks-gallery-item.is-selected {
+  z-index: 1; }
+
+.block-library-gallery-item__inline-menu,
+.block-library-gallery-item__move-menu {
+  display: none; }
+
+.blocks-gallery-item.is-selected .block-library-gallery-item__inline-menu,
+.blocks-gallery-item.is-selected .block-library-gallery-item__move-menu {
+  display: block; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+/**
+ * Breakpoint mixins
+ */
+/**
+ * Long content fade mixin
+ *
+ * Creates a fading overlay to signify that the content is longer
+ * than the space allows.
+ */
+/**
+ * Button states and focus styles
+ */
+/**
+ * Applies editor left position to the selector passed as argument
+ */
+/**
+ * Applies editor right position to the selector passed as argument
+ */
+/**
+ * Styles that are reused verbatim in a few places
+ */
+/**
+ * Allows users to opt-out of animations via OS-level preferences.
+ */
+/**
+ * Reset default styles for JavaScript UI based pages.
+ * This is a WP-admin agnostic reset
+ */
+/**
+ * Reset the WP Admin page styles for Gutenberg-like pages.
+ */
+/**
+ * Breakpoints & Media Queries
+ */
+/**
+ * Colors
+ */
+/**
+ * Often re-used variables
+ */
+.wp-block-swiper-swiper .swiper-slide > .editor-block-list__block-edit,
+.wp-block-swiper-swiper .swiper-slide > .editor-block-list__block-edit > *[data-block],
+.wp-block-swiper-swiper .swiper-slide > .editor-block-list__block-edit > *[data-block] > .block-swiper-swiper-slide {
+  height: 100%; }
+
+.wp-block-swiper-swiper .swiper-wrapper * {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box; }
+
+.edit-post-visual-editor .wp-block-swiper-swiper .swiper-slide > .editor-block-list__block-edit {
+  margin-left: 0;
+  margin-right: 0; }
+
+.wp-block-swiper-swiper .block-swiper-swiper-slide > .block-editor-block-list__layout {
+  margin-left: -14px;
+  margin-right: -14px; }
+
+.wp-block-swiper-swiper .block-swiper-swiper-slide {
+  margin-top: -32px; }
+
+.wp-block-swiper-swiper .swiper-slide * {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box; }
+
+.wp-block-swiper-swiper .swiper-container {
+  width: 100%;
+  overflow: visible; }
+
+.wp-block-swiper-swiper .swiper-slide {
+  height: auto; }
+
+.wp-block-swiper-swiper > .editor-inner-blocks > .block-editor-block-list__layout,
+.wp-block-swiper-swiper > div > .editor-inner-blocks > .block-editor-block-list__layout {
+  margin-left: 0;
+  margin-right: 0; }
+
+.wp-block-swiper-swiper .block-swiper-swiper-slide.is-selected {
+  position: relative; }
+  .wp-block-swiper-swiper .block-swiper-swiper-slide.is-selected:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    background: -webkit-gradient(linear, left top, right top, color-stop(50%, #3484b5), color-stop(50%, transparent)), -webkit-gradient(linear, left top, right top, color-stop(50%, #3484b5), color-stop(50%, transparent)), -webkit-gradient(linear, left bottom, left top, color-stop(50%, #3484b5), color-stop(50%, transparent)), -webkit-gradient(linear, left bottom, left top, color-stop(50%, #3484b5), color-stop(50%, transparent));
+    background: -webkit-linear-gradient(left, #3484b5 50%, transparent 50%), -webkit-linear-gradient(left, #3484b5 50%, transparent 50%), -webkit-linear-gradient(bottom, #3484b5 50%, transparent 50%), -webkit-linear-gradient(bottom, #3484b5 50%, transparent 50%);
+    background: -o-linear-gradient(left, #3484b5 50%, transparent 50%), -o-linear-gradient(left, #3484b5 50%, transparent 50%), -o-linear-gradient(bottom, #3484b5 50%, transparent 50%), -o-linear-gradient(bottom, #3484b5 50%, transparent 50%);
+    background: linear-gradient(90deg, #3484b5 50%, transparent 50%), linear-gradient(90deg, #3484b5 50%, transparent 50%), linear-gradient(0deg, #3484b5 50%, transparent 50%), linear-gradient(0deg, #3484b5 50%, transparent 50%);
+    background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+    background-size: calc(2px * 4) 2px, calc((2px * 4)) 2px, 2px calc(2px * 4), 2px calc((2px * 4));
+    background-position: 0px 0px, 100% 100%, 0px 100%, 100% 0px;
+    padding: 10px;
+    -webkit-animation: border-dance 4s infinite linear;
+            animation: border-dance 4s infinite linear; }
+
+@-webkit-keyframes border-dance {
+  0% {
+    background-position: 0px 0px, 300px calc(100%), 0px 150px, calc(100%) 0px; }
+  100% {
+    background-position: 300px 0px, 0px calc(100%), 0px 0px, calc(100%) 150px; } }
+
+@keyframes border-dance {
+  0% {
+    background-position: 0px 0px, 300px calc(100%), 0px 150px, calc(100%) 0px; }
+  100% {
+    background-position: 300px 0px, 0px calc(100%), 0px 0px, calc(100%) 150px; } }
+
+.wp-block-swiper-swiper .swiper-container {
+  width: 100%;
+  overflow: visible; }
+
+.wp-block-swiper-swiper .swiper-container.is-animating {
+  overflow: hidden; }
+
+.wp-block-swiper-swiper .swiper-container:not(.is-animating) .swiper-slide:not(.swiper-slide-visible) {
+  visibility: hidden; }
+
+.wp-block-swiper-swiper .swiper-slide-active {
+  z-index: 1; }
+
+video {
+  width: 100%; }
