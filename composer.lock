@@ -138,9 +138,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/featured-galleries.2.1.0.zip",
-                "reference": null,
-                "shasum": null
+                "url": "https://downloads.wordpress.org/plugin/featured-galleries.2.1.0.zip"
             },
             "require": {
                 "composer/installers": "~1.0"

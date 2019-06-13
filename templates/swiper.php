@@ -1,9 +1,5 @@
 <!-- Slider main container -->
-<div
-  <?php foreach ($html_atts as $name => $value): ?>
-    <?= $name ?>="<?= $value ?>"
-  <?php endforeach; ?>
->
+<div id="<?= $id; ?>" class="swiper-container">
   <div class="swiper-wrapper">
     <?php while( have_posts()) : the_post() ?>
       <!-- Slides -->
@@ -16,12 +12,16 @@
     <?php endwhile; ?>
   </div>
 
-  <?php if ($options['pagination']): ?>
-    <div class="swiper-pagination"></div>
+  <?php if ($pagination): ?>
+    <div class="swiper-pagination <?= $theme['classes']['swiper-pagination']; ?>"></div>
   <?php endif; ?>
 
-  <?php if ($options['navigation']): ?>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
+  <?php if ($scrollbar): ?>
+    <div class="swiper-scrollbar <?= $theme['classes']['swiper-scrollbar']; ?>"></div>
+  <?php endif; ?>
+
+  <?php if ($navigation): ?>
+    <div class="swiper-button-next <?= $theme['classes']['swiper-button-next']; ?>"></div>
+    <div class="swiper-button-prev <?= $theme['classes']['swiper-button-prev']; ?>"></div>
   <?php endif; ?>
 </div>

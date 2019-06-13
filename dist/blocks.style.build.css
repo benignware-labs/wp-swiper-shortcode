@@ -1,0 +1,193 @@
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+/**
+ * Breakpoint mixins
+ */
+/**
+ * Long content fade mixin
+ *
+ * Creates a fading overlay to signify that the content is longer
+ * than the space allows.
+ */
+/**
+ * Button states and focus styles
+ */
+/**
+ * Applies editor left position to the selector passed as argument
+ */
+/**
+ * Applies editor right position to the selector passed as argument
+ */
+/**
+ * Styles that are reused verbatim in a few places
+ */
+/**
+ * Allows users to opt-out of animations via OS-level preferences.
+ */
+/**
+ * Reset default styles for JavaScript UI based pages.
+ * This is a WP-admin agnostic reset
+ */
+/**
+ * Reset the WP Admin page styles for Gutenberg-like pages.
+ */
+/**
+ * Breakpoints & Media Queries
+ */
+/**
+ * Colors
+ */
+/**
+ * Often re-used variables
+ */
+.wp-block-swiper-swiper-gallery {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  list-style-type: none;
+  padding: 0; }
+  .wp-block-swiper-swiper-gallery[class^="wp-block-"]:not(.wp-block-gallery) figcaption {
+    /* outline: 2px solid green; */
+    margin-bottom: 0; }
+  .wp-block-swiper-swiper-gallery .blocks-gallery-image,
+  .wp-block-swiper-swiper-gallery .blocks-gallery-item {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-positive: 1;
+        flex-grow: 1;
+    -ms-flex-direction: column;
+        flex-direction: column;
+    -ms-flex-pack: center;
+        justify-content: center;
+    position: relative; }
+    .wp-block-swiper-swiper-gallery .blocks-gallery-image figure,
+    .wp-block-swiper-swiper-gallery .blocks-gallery-item figure {
+      margin: 0;
+      height: 100%; }
+      @supports ((position: -webkit-sticky) or (position: sticky)) {
+        .wp-block-swiper-swiper-gallery .blocks-gallery-image figure,
+        .wp-block-swiper-swiper-gallery .blocks-gallery-item figure {
+          display: -ms-flexbox;
+          display: flex;
+          -ms-flex-align: end;
+              align-items: flex-end;
+          -ms-flex-pack: start;
+              justify-content: flex-start; } }
+    .wp-block-swiper-swiper-gallery .blocks-gallery-image img,
+    .wp-block-swiper-swiper-gallery .blocks-gallery-item img {
+      display: block;
+      max-width: 100%;
+      height: auto; }
+    .wp-block-swiper-swiper-gallery .blocks-gallery-image img,
+    .wp-block-swiper-swiper-gallery .blocks-gallery-item img {
+      width: 100%; }
+      @supports ((position: -webkit-sticky) or (position: sticky)) {
+        .wp-block-swiper-swiper-gallery .blocks-gallery-image img,
+        .wp-block-swiper-swiper-gallery .blocks-gallery-item img {
+          width: auto; } }
+    .wp-block-swiper-swiper-gallery .blocks-gallery-image figcaption,
+    .wp-block-swiper-swiper-gallery .blocks-gallery-item figcaption {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      max-height: 100%;
+      overflow: auto;
+      padding: 40px 10px 9px;
+      color: #fff;
+      text-align: center;
+      font-size: 13px;
+      background: -webkit-gradient(linear, left bottom, left top, color-stop(0, rgba(0, 0, 0, 0.7)), color-stop(70%, rgba(0, 0, 0, 0.3)), to(transparent));
+      background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.7) 0, rgba(0, 0, 0, 0.3) 70%, transparent);
+      background: -o-linear-gradient(bottom, rgba(0, 0, 0, 0.7) 0, rgba(0, 0, 0, 0.3) 70%, transparent);
+      background: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0, rgba(0, 0, 0, 0.3) 70%, transparent);
+      margin-bottom: 0; }
+      .wp-block-swiper-swiper-gallery .blocks-gallery-image figcaption img,
+      .wp-block-swiper-swiper-gallery .blocks-gallery-item figcaption img {
+        display: inline; }
+  .wp-block-swiper-swiper-gallery.is-cropped .blocks-gallery-image a,
+  .wp-block-swiper-swiper-gallery.is-cropped .blocks-gallery-image img,
+  .wp-block-swiper-swiper-gallery.is-cropped .blocks-gallery-item a,
+  .wp-block-swiper-swiper-gallery.is-cropped .blocks-gallery-item img {
+    width: 100%; }
+    @supports ((position: -webkit-sticky) or (position: sticky)) {
+      .wp-block-swiper-swiper-gallery.is-cropped .blocks-gallery-image a,
+      .wp-block-swiper-swiper-gallery.is-cropped .blocks-gallery-image img,
+      .wp-block-swiper-swiper-gallery.is-cropped .blocks-gallery-item a,
+      .wp-block-swiper-swiper-gallery.is-cropped .blocks-gallery-item img {
+        height: 100%;
+        -ms-flex: 1;
+            flex: 1;
+        -o-object-fit: cover;
+           object-fit: cover; } }
+  .wp-block-swiper-swiper-gallery .blocks-gallery-image:last-child,
+  .wp-block-swiper-swiper-gallery .blocks-gallery-item:last-child {
+    margin-right: 0; }
+  .wp-block-swiper-swiper-gallery.alignleft, .wp-block-swiper-swiper-gallery.alignright {
+    max-width: 305px;
+    width: 100%; }
+  .wp-block-swiper-swiper-gallery.alignleft, .wp-block-swiper-swiper-gallery.aligncenter, .wp-block-swiper-swiper-gallery.alignright {
+    display: -ms-flexbox;
+    display: flex; }
+  .wp-block-swiper-swiper-gallery.aligncenter .blocks-gallery-item figure {
+    -ms-flex-pack: center;
+        justify-content: center; }
+
+.block-editor-block-list__layout .block-editor-block-list__block .wp-block-swiper-swiper-gallery ::-moz-selection {
+  outline: none; }
+
+.block-editor-block-list__layout .block-editor-block-list__block .wp-block-swiper-swiper-gallery ::selection {
+  outline: none; }
+
+.swiper-gallery-item {
+  position: relative; }
+
+.swiper-gallery-item.is-selected {
+  position: relative; }
+  .swiper-gallery-item.is-selected:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    background: -webkit-gradient(linear, left top, right top, color-stop(50%, #3484b5), color-stop(50%, transparent)), -webkit-gradient(linear, left top, right top, color-stop(50%, #3484b5), color-stop(50%, transparent)), -webkit-gradient(linear, left bottom, left top, color-stop(50%, #3484b5), color-stop(50%, transparent)), -webkit-gradient(linear, left bottom, left top, color-stop(50%, #3484b5), color-stop(50%, transparent));
+    background: -webkit-linear-gradient(left, #3484b5 50%, transparent 50%), -webkit-linear-gradient(left, #3484b5 50%, transparent 50%), -webkit-linear-gradient(bottom, #3484b5 50%, transparent 50%), -webkit-linear-gradient(bottom, #3484b5 50%, transparent 50%);
+    background: -o-linear-gradient(left, #3484b5 50%, transparent 50%), -o-linear-gradient(left, #3484b5 50%, transparent 50%), -o-linear-gradient(bottom, #3484b5 50%, transparent 50%), -o-linear-gradient(bottom, #3484b5 50%, transparent 50%);
+    background: linear-gradient(90deg, #3484b5 50%, transparent 50%), linear-gradient(90deg, #3484b5 50%, transparent 50%), linear-gradient(0deg, #3484b5 50%, transparent 50%), linear-gradient(0deg, #3484b5 50%, transparent 50%);
+    background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+    background-size: calc(2px * 4) 2px, calc((2px * 4)) 2px, 2px calc(2px * 4), 2px calc((2px * 4));
+    background-position: 0px 0px, 100% 100%, 0px 100%, 100% 0px;
+    padding: 10px;
+    -webkit-animation: border-dance 4s infinite linear;
+            animation: border-dance 4s infinite linear; }
+
+@-webkit-keyframes border-dance {
+  0% {
+    background-position: 0px 0px, 300px calc(100%), 0px 150px, calc(100%) 0px; }
+  100% {
+    background-position: 300px 0px, 0px calc(100%), 0px 0px, calc(100%) 150px; } }
+
+@keyframes border-dance {
+  0% {
+    background-position: 0px 0px, 300px calc(100%), 0px 150px, calc(100%) 0px; }
+  100% {
+    background-position: 300px 0px, 0px calc(100%), 0px 0px, calc(100%) 150px; } }
+
+.swiper-gallery-item figure {
+  padding: 0;
+  margin: 0; }
+
+.swiper-gallery-item img {
+  display: block; }
+
+.swiper-container-thumbs {
+  -ms-flex-order: 1;
+      order: 1; }

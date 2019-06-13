@@ -1,3 +1,10 @@
+node_modules
+
+## Uncomment line below if you prefer to
+## keep compiled files out of version control
+# dist/
+
+
 # Mac OS
 .DS_Store
 
@@ -6,12 +13,22 @@ node_modules
 **/node_modules
 npm-debug.log
 
-# Composer
-composer.phar
+# PHP
 vendor
+composer.phar
 
-# Parcel
-.cache
+# Temp Dir
+tmp
+temp
 
-# Content
+# Env Files
+.env-*
+.env
+!.env-sample
+
+# Wordpress
+wp-config-*
+wp-config
+.plugins
+.mu-plugins
 .uploads

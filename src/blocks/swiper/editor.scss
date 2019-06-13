@@ -1,0 +1,84 @@
+
+
+
+
+
+.wp-block-swiper-swiper {
+	.swiper-slide > .editor-block-list__block-edit,
+	.swiper-slide > .editor-block-list__block-edit > *[data-block],
+	.swiper-slide > .editor-block-list__block-edit > *[data-block] > .block-swiper-swiper-slide {
+		height: 100%;
+	}
+
+	.swiper-wrapper * {
+		box-sizing: border-box;
+	}
+
+	.swiper-slide > .editor-block-list__block-edit {
+
+		.edit-post-visual-editor & {
+			margin-left: 0;
+			margin-right: 0;
+		}
+
+	}
+
+	.block-swiper-swiper-slide > .block-editor-block-list__layout {
+		margin-left: -14px;
+		margin-right: -14px;
+	}
+
+	.block-swiper-swiper-slide {
+		margin-top: -32px;
+	}
+
+	.swiper-slide * {
+		box-sizing: border-box;
+	}
+
+	.swiper-container {
+		width: 100%;
+		overflow: visible;
+	}
+
+
+
+	.swiper-slide {
+		height: auto;
+	}
+
+	> .editor-inner-blocks > .block-editor-block-list__layout,
+	> div > .editor-inner-blocks > .block-editor-block-list__layout {
+		margin-left: 0;
+		margin-right: 0;
+ 	}
+
+	.block-swiper-swiper-slide {
+	}
+
+	.block-swiper-swiper-slide.is-selected {
+		@include selection-outline();
+	}
+
+	.swiper-container {
+		width: 100%;
+		overflow: visible;
+	}
+
+	.swiper-container.is-animating {
+		overflow: hidden;
+	}
+
+	.swiper-container:not(.is-animating) .swiper-slide:not(.swiper-slide-visible) {
+		visibility: hidden;
+	}
+
+	.swiper-slide-active {
+		z-index: 1;
+	}
+}
+
+
+video {
+	width: 100%;
+}

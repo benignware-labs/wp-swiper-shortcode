@@ -1,40 +1,29 @@
-<?php
-  global $post;
-?>
 <!-- Slider main container -->
-
-<div class="swiper-gallery">
-  <div
-    <?php foreach ($html_atts as $name => $value): ?>
-      <?= $name ?>="<?= $value ?>"
-    <?php endforeach; ?>
-  >
+<div class=="swiper-gallery">
+  <div id="<?= $id; ?>" class="swiper-container">
     <div class="swiper-wrapper">
       <?php while( have_posts()) : the_post() ?>
+        <!-- Slides -->
         <div class="swiper-slide">
-          <div class="swiper-slide" style="background-image:url(<?= wp_get_attachment_image_src( $post->ID, 'post-thumbnail')[0] ?>)"></div>
+          <img src="<?= wp_get_attachment_image_src($post->ID, $size)[0] ?>"/>
         </div>
       <?php endwhile; ?>
     </div>
-    <?php if ($options['pagination']): ?>
-      <div class="swiper-pagination"></div>
+
+    <?php if ($pagination): ?>
+      <div class="swiper-pagination <?= $theme['classes']['swiper-pagination']; ?>"></div>
     <?php endif; ?>
-    <?php if ($options['navigation']): ?>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
+
+    <?php if ($scrollbar): ?>
+      <div class="swiper-scrollbar <?= $theme['classes']['swiper-scrollbar']; ?>"></div>
+    <?php endif; ?>
+
+    <?php if ($navigation): ?>
+      <div class="swiper-button-next <?= $theme['classes']['swiper-button-next']; ?>"></div>
+      <div class="swiper-button-prev <?= $theme['classes']['swiper-button-prev']; ?>"></div>
     <?php endif; ?>
   </div>
-  <?php if ($options['thumbs']): ?>
-    <div
-      <?php foreach ($thumbs_html_atts as $name => $value): ?>
-        <?= $name ?>="<?= $value ?>"
-      <?php endforeach; ?>
-    >
-      <div class="swiper-wrapper">
-        <?php while( have_posts()) : the_post() ?>
-          <div class="swiper-slide" style="background-image:url(<?= wp_get_attachment_image_src( $post->ID, 'thumbnail')[0] ?>)"></div>
-        <?php endwhile; ?>
-      </div>
-    </div>
+  <?php if ($thumbs): ?>
+    <?php get_swiper($template, 'thumbs', $thumbs); ?>
   <?php endif; ?>
 </div>

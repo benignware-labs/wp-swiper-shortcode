@@ -1,0 +1,59 @@
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+
+// Colors.
+$black: rgb(41, 41, 41);
+$white: #f4f4f4;
+$gray: #dedede;
+$green: #bada55;
+$red: orangered;
+
+
+$selection-outline: 2px dashed rgba(52, 132, 181, 1);
+$selection-outline-color: rgba(52, 132, 181, 1);
+$selection-outline-width: 2px;
+
+@import './assets/stylesheets/mixins';
+@import './assets/stylesheets/breakpoints';
+@import './assets/stylesheets/colors';
+@import './assets/stylesheets/variables';
+@import './assets/stylesheets/animations';
+@import './assets/stylesheets/z-index';
+
+
+@mixin selection-outline($border-width: $selection-outline-width, $color: $selection-outline-color) {
+  $width: 100%;
+  $height: 100%;
+  position: relative;
+
+  &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    box-sizing: border-box;
+    pointer-events: none;
+    width: $width;
+    height: $height;
+    background: linear-gradient(90deg, #{$color} 50%, transparent 50%), linear-gradient(90deg, #{$color} 50%, transparent 50%), linear-gradient(0deg, #{$color} 50%, transparent 50%), linear-gradient(0deg, #{$color} 50%, transparent 50%);
+    background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+    background-size: calc(#{$border-width} * 4) #{$border-width}, calc((#{$border-width} * 4)) #{$border-width}, #{$border-width}
+      calc(#{$border-width} * 4), #{$border-width} calc((#{$border-width} * 4));
+    background-position: 0px 0px, #{$width} #{$height}, 0px #{$height}, #{$width} 0px;
+    padding: 10px;
+    animation: border-dance 4s infinite linear;
+  }
+
+  @keyframes border-dance {
+    0% {
+      background-position: 0px 0px, 300px calc(#{$height}), 0px 150px, calc(#{$width}) 0px;
+    }
+    100% {
+      background-position: 300px 0px, 0px calc(#{$height}), 0px 0px, calc(#{$width}) 150px;
+    }
+  }
+}

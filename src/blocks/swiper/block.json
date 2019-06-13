@@ -1,0 +1,57 @@
+{
+	"name": "swiper/swiper",
+	"category": "swiper",
+	"attributes": {
+		"size": {
+			"type": "string",
+			"default": "large"
+		},
+		"theme": {
+			"type": "string",
+			"default": null
+		},
+		"slidesPerView": {
+			"type": "number",
+			"default": 1
+		},
+		"centeredSlides": {
+			"type": "boolean",
+			"default": false
+		},
+		"navigation": {
+			"type": "boolean",
+			"default": true
+		},
+		"pagination": {
+			"type": "object",
+			"default": {
+				"type": "bullets",
+				"clickable": true
+			}
+		},
+		"scrollbar": {
+			"type": "boolean",
+			"default": false
+		},
+		"autoplay": {
+			"type": "object",
+			"default": null
+		},
+		"loop": {
+			"type": "boolean",
+			"default": false
+		},
+		"parallax": {
+			"type": "boolean",
+			"default": false
+		},
+		"spaceBetween": {
+			"type": "number",
+			"default": 0
+		},
+		"thumbs": {
+			"type": "object",
+			"default": null
+		}
+	}
+}
