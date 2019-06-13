@@ -50,6 +50,8 @@ function ColumnEdit( {
   		{({ handleClick, selectedClientId }) => {
 				const isSelected = selectedClientId === props.clientId;
 
+				console.log('render slide');
+
 				return (
 					<div
 						className={classnames(
@@ -95,6 +97,7 @@ function ColumnEdit( {
 	);
 }
 
+/*
 export default compose(
 	withSelect( ( select, ownProps ) => {
 		const { clientId } = ownProps;
@@ -154,3 +157,6 @@ export default compose(
 		};
 	} )
 )( ColumnEdit );
+*/
+
+export default ColumnEdit;

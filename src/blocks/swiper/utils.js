@@ -13,13 +13,7 @@ import { times, findIndex, sumBy, merge, mapValues } from 'lodash';
  */
 export const getColumnsTemplate = memoize( ( columns ) => {
 
-	return times( columns, () => ['swiper/swiper-slide', {}, [
-		[ 'core/paragraph', { placeholder: 'Enter slide content...' } ],
-	]] );
-
-
-
-	// return times( columns, () => [ 'swiper/swiper-slide' ] );
+	return times( columns, () => [ 'swiper/swiper-slide' ] );
 } );
 
 /**

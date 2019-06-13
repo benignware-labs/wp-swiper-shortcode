@@ -11,7 +11,7 @@
     "@wordpress/blob": "^2.4.0",
     "@wordpress/block-editor": "^2.0.3",
     "array-equal": "^1.0.0",
-    "cgb-scripts": "1.17.0",
+    "cgb-scripts": "1.18.1",
     "fast-deep-equal": "^2.0.1",
     "humanize-string": "^2.1.0",
     "lodash": "^4.17.11",

@@ -257,7 +257,6 @@ function swiper_shortcode($params, $content = null) {
 		$wp_query = new WP_QUERY($query_params);
 
 		$is_query = true;
-
 	}
 
 	ob_start();

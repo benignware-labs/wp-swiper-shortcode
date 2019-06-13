@@ -23,12 +23,11 @@ registerBlockType(name, {
 	parent: [ 'swiper/swiper' ],
 	icon,
 	description: __( 'A single item within a swiper block.' ),
-	/*
 	supports: {
 		inserter: false,
 		reusable: false,
 		html: false,
-	},*/
+	},
 	getEditWrapperProps( attributes ) {
 		const { width } = attributes;
 

@@ -151,7 +151,9 @@ export function ColumnsEdit( {
 				</Toolbar>
 			</BlockControls>
 			<InspectorControls>
-				{getSwiperControls(props, attributes, innerBlocks.length)}
+				{getSwiperControls(props, attributes, innerBlocks.length, {
+					exclude: [ 'thumbs' ]
+				})}
 			</InspectorControls>
 			<div ref={refContainer} className={className}>
 				<Swiper
