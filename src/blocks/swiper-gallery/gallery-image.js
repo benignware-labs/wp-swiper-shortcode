@@ -8,7 +8,7 @@ import classnames from 'classnames';
  */
 // import { Component } from '@wordpress/element';
 
-const { Component } = wp.element;
+const { Component, Fragment } = wp.element;
 
 // import { IconButton, Spinner } from '@wordpress/components';
 
@@ -107,7 +107,7 @@ class GalleryImage extends Component {
 
 	render() {
 		const { className, url, alt, id, linkTo, link, isFirstItem, isLastItem, isSelected, caption, onRemove, onMoveForward, onMoveBackward, setAttributes, 'aria-label': ariaLabel } = this.props;
-		const { image, size } = this.props;
+		const { image, size, fit } = this.props;
 		const sizes = image && image.media_details.sizes;
 		const src = size ? sizes && sizes[size] ? sizes[size].source_url : null : url;
 
@@ -122,13 +122,24 @@ class GalleryImage extends Component {
 				break;
 		}
 
+		console.log('PROPs..', fit, this.props);
+
 		const img = (
 			// Disable reason: Image itself is not meant to be interactive, but should
 			// direct image selection and unfocus caption fields.
 			/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-			<div>
+			<Fragment>
 				{ src && (
 					<img
+						className={classnames(
+							'swiper-gallery-img'
+						)}
+						style={fit ? {
+							width: '100%',
+							height: '100%',
+							objectFit: fit,
+							objectPosition: 'center'
+						} : undefined}
 						src={ src }
 						alt={ alt }
 						data-id={ id }
@@ -141,7 +152,7 @@ class GalleryImage extends Component {
 					/>
 				)}
 				{ isBlobURL( url ) && <Spinner /> }
-			</div>
+			</Fragment>
 			/* eslint-enable jsx-a11y/no-noninteractive-element-interactions */
 		);
 
@@ -151,7 +162,6 @@ class GalleryImage extends Component {
 				'is-selected': isSelected,
 				'is-transient': isBlobURL( url ),
 			} ) }>
-				<figure>
 					{ href ? <a href={ href }>{ img }</a> : img }
 					{/*
 					<div className="block-library-gallery-item__move-menu">
@@ -193,7 +203,6 @@ class GalleryImage extends Component {
 						inlineToolbar
 					/>
 					*/}
-				</figure>
 			</div>
 		);
 	}

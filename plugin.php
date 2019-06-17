@@ -1,17 +1,13 @@
 <?php
 
-
 /**
- * Plugin Name: my-block — CGB Gutenberg Block Plugin
- * Plugin URI: https://github.com/ahmadawais/create-guten-block/
- * Description: my-block — is a Gutenberg plugin created via create-guten-block.
- * Author: mrahmadawais, maedahbatool
- * Author URI: https://AhmadAwais.com/
- * Version: 1.0.0
- * License: GPL2+
- * License URI: https://www.gnu.org/licenses/gpl-2.0.txt
+ * Plugin Name: Swiper Shortcode
+ * Plugin URI: https://github.com/benignware-labs/wp-swiper-shortcode
+ * Description: Swiper Integration for Wordpress
+ * Author: Rafael Nowrotek
+ * Author URI: http://benignware.com/
+ * Version: 0.1.0-beta.2
  *
- * @package CGB
  */
 
 // Exit if accessed directly.
@@ -112,3 +108,11 @@ register_swiper_theme('dark', array(
 		'swiper-scrollbar' => 'swiper-scrollbar-black'
 	)
 ));
+
+add_filter( 'post_gallery', function($output = '', $atts = null) {
+	$params = array_merge(array(
+		'fit' => 'cover'
+	), $atts);
+
+	return swiper_gallery_shortcode($params, $output);
+}, 11, 2 );

@@ -53,7 +53,7 @@
 		},
 		"fit": {
 			"type": "string",
-			"default": "contain"
+			"default": "cover"
 		}
 	}
 }

@@ -191,3 +191,6 @@
 .swiper-container-thumbs {
   -ms-flex-order: 1;
       order: 1; }
+
+.swiper-slide {
+  height: auto; }

@@ -1,7 +1,7 @@
 {
-  "name": "benignware/wp-my-block",
-  "description": "Gutenberg Test Plugin",
-  "version": "0.0.1",
+  "name": "benignware/swiper-shortcode",
+  "description": "Swiper integration for Wordpress",
+  "version": "0.1.0-beta.2",
   "type": "wordpress-plugin",
   "license": "MIT",
   "homepage": "http://github.com/benignware-labs/wp-my-block",

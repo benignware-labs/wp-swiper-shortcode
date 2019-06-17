@@ -240,7 +240,8 @@ class GalleryEdit extends Component {
 			linkTo,
 			navigation,
 			size,
-			thumbs
+			thumbs,
+			fit
 		} = attributes;
 
 		const hasImages = !! images.length;
@@ -426,6 +427,7 @@ class GalleryEdit extends Component {
 
 							return (
 								<GalleryImage
+									fit={fit}
 									className={classnames(
 										'swiper-gallery-item',
 										isSelected && selectedImage === index && 'is-selected'

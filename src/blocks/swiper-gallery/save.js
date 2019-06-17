@@ -16,7 +16,8 @@ export default function save( { attributes } ) {
 		columns = defaultColumnsNumber( attributes ),
 		imageCrop,
 		linkTo,
-		navigation
+		navigation,
+		fit
 	} = attributes;
 
 	return (
@@ -38,16 +39,31 @@ export default function save( { attributes } ) {
 							break;
 					}
 
-					const img = <img src={ image.url } alt={ image.alt } data-id={ image.id } data-link={ image.link } className={ image.id ? `wp-image-${ image.id }` : null } />;
+					const img = (
+						<img
+							className={classnames(
+								'swiper-gallery-img'
+							)}
+							style={fit ? {
+								width: '100%',
+								height: '100%',
+								objectFit: fit,
+								objectPosition: 'center'
+							} : undefined}
+							src={ image.url }
+							alt={ image.alt }
+							data-id={ image.id }
+							data-link={ image.link }
+							className={ image.id ? `wp-image-${ image.id }` : null }
+						/>
+					);
 
 					return (
 						<div key={ image.id || image.url } className="blocks-gallery-item">
-							<figure>
-								{ href ? <a href={ href }>{ img }</a> : img }
-								{ image.caption && image.caption.length > 0 && (
-									<RichText.Content tagName="figcaption" value={ image.caption } />
-								) }
-							</figure>
+							{ href ? <a href={ href }>{ img }</a> : img }
+							{ image.caption && image.caption.length > 0 && (
+								<RichText.Content tagName="figcaption" value={ image.caption } />
+							) }
 						</div>
 					);
 				} ) }

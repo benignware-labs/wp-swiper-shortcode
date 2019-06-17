@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cce1e8af223f86d032ec06bb19655230",
+    "content-hash": "4a8eb9c19bbe0df1b423745409d3175a",
     "packages": [
         {
             "name": "composer/installers",
@@ -127,26 +127,7 @@
             "time": "2018-08-27T06:10:37+00:00"
         }
     ],
-    "packages-dev": [
-        {
-            "name": "wpackagist-plugin/featured-galleries",
-            "version": "2.1.0",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/featured-galleries/",
-                "reference": "tags/2.1.0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/featured-galleries.2.1.0.zip"
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/featured-galleries/"
-        }
-    ],
+    "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": [],
