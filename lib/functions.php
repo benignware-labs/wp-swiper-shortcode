@@ -291,8 +291,11 @@ function swiper_gallery_shortcode($params, $content = null) {
     'post_type' => 'attachment',
     'post_mime_type' => 'image',
     'ids' => is_array($params['ids']) ? implode(',', $params['ids']) : $params['ids'],
-    'size' => 'large'
+    'size' => 'large',
+    'fit' => 'cover'
   ), $params, 'swiper-gallery'));
+
+  // print_r($params);
 
 	$content = do_shortcode($content);
 

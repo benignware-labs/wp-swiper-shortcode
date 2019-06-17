@@ -50,8 +50,6 @@ function ColumnEdit( {
   		{({ handleClick, selectedClientId }) => {
 				const isSelected = selectedClientId === props.clientId;
 
-				console.log('render slide');
-
 				return (
 					<div
 						className={classnames(

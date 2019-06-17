@@ -122,8 +122,6 @@ class GalleryImage extends Component {
 				break;
 		}
 
-		console.log('PROPs..', fit, this.props);
-
 		const img = (
 			// Disable reason: Image itself is not meant to be interactive, but should
 			// direct image selection and unfocus caption fields.

@@ -1,5 +1,5 @@
 <!-- Slider main container -->
-<div class=="swiper-gallery">
+<div class="swiper-gallery">
   <div id="<?= $id; ?>" class="swiper-container">
     <div class="swiper-wrapper">
       <?php while( have_posts()) : the_post() ?>

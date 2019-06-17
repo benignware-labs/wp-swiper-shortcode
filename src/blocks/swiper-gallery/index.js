@@ -14,7 +14,7 @@ import icon from './icon';
 import metadata from './block.json';
 import save from './save';
 // import deprecated from './deprecated';
-import transforms from './transforms';
+// import transforms from './transforms';
 
 const { name, attributes, ...settings } = metadata;
 const { attributes: swiperAttributes } = swiperMetadata;
@@ -30,7 +30,7 @@ registerBlockType( name, {
 	// Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.
 	title: __( 'Swiper Gallery' ), // Block title.
 	icon,
-	transforms,
+	// transforms,
 	// deprecated,
 	edit,
 	save
