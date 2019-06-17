@@ -41,9 +41,7 @@ export default function save( { attributes } ) {
 
 					const img = (
 						<img
-							className={classnames(
-								'swiper-gallery-img'
-							)}
+							className="swiper-gallery-img"
 							style={fit ? {
 								width: '100%',
 								height: '100%',

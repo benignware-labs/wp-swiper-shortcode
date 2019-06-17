@@ -55,15 +55,17 @@ function get_swiper($template, $format = '', $params = array()) {
 	$id = $params['id'];
 
   $script.= "<script type=\"text/javascript\">//<![CDATA[\n(function($, Swiper) {\n";
-  $script.= "var options = " . $json . ";\n";
+  $script.= "\tvar options = " . $json . ";\n";
   // $script.= "console.log('INIT SWIPER', options);\n";
-  $script.= "if (options.thumbs) { if (typeof options.thumbs.swiper === 'string') {\n";
-  $script.= "\tvar data = $(options.thumbs.swiper).data('swiper-shortcode'); \n";
-  $script.= "\tif (data) {\n";
-  $script.= "\t\toptions.thumbs.swiper = data.instance;\n";
+  $script.= "\tif (options.thumbs) {\n";
+  $script.= "\t\tif (typeof options.thumbs.swiper === 'string') {\n";
+  $script.= "\t\t\tvar data = $(options.thumbs.swiper).data('swiper-shortcode');\n";
+  $script.= "\t\t\tif (data) {\n";
+  $script.= "\t\t\t\toptions.thumbs.swiper = data.instance;\n";
   // $script.= "\t\tconsole.log('.......****', options.thumbs.swiper)\n";
+  $script.= "\t\t\t}\n";
+  $script.= "\t\t}\n";
   $script.= "\t}\n";
-  $script.= "} }\n";
 
   // $script.= "console.log(Swiper, JSON.stringify(options, null, 2));\n";
   $script.= "\tvar swiperElement = document.getElementById('{$id}');\n";
