@@ -50,6 +50,21 @@ export const getSwiperControls = (props = {}, attributes = {}, size = 0, options
 		...options
 	};
 
+	const { options: { theme }, themes } = remoteSettings;
+
+	console.log('THEMES', themes, theme);
+
+	const themeOptions = [
+		{
+			label: `${__('Default')}${theme ? ` (${__(humanizeString(theme))})` : ''}`,
+			value: ''
+		},
+		...Object.entries(themes).map(([ value, { name, label } ]) => ({
+			label: label || name && __(humanizeString(name)) || __(humanizeString(value)), value
+		}))
+	];
+
+
 	return (
 		<PanelBody title={ __( 'Swiper Settings' ) }>
 			{size > 1 && (
@@ -235,11 +250,7 @@ export const getSwiperControls = (props = {}, attributes = {}, size = 0, options
 			<SelectControl
 				label={__( 'Theme' )}
 				value={ attributes.theme }
-				options={ [
-					{ label: 'Standard', value: '' },
-					{ label: 'Dark', value: 'dark' },
-					{ label: 'Light', value: 'light' },
-				] }
+				options={themeOptions}
 				onChange={ ( value ) => props.setAttributes({
 					...attributes,
 					theme: value

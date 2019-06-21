@@ -2,7 +2,15 @@
 
 
 function get_swiper($template, $format = '', $params = array()) {
+  global $registered_swiper_themes;
+
+  $options = array_filter($params);
+  $options = apply_filters('swiper_options', $options, $params);
+
+  $theme = isset($options['theme']) ? $options['theme'] : $params['theme'];
+
   $params = array_merge(
+    $params,
 		array(
 			'id' => 'swiper-' . uniqid(),
       'theme' => $registered_swiper_themes[$theme] ?: array(
@@ -13,12 +21,8 @@ function get_swiper($template, $format = '', $params = array()) {
 					'swiper-scrollbar' => ''
 				)
 			)
-		),
-		$params
+		)
 	);
-
-  $options = $params;
-  $options = apply_filters('swiper_options', $options, $params);
 
   if (is_array($params['thumbs']) || $params['thumbs']) {
     $params['thumbs'] = swiper_shortcode_array_merge_rec(
@@ -81,6 +85,8 @@ function get_swiper($template, $format = '', $params = array()) {
 
 function register_swiper_theme($name, $theme = array()) {
   global $registered_swiper_themes;
+
+  // echo 'register swiper theme' . $name . '<br/>';
 
   $registered_swiper_themes[$name] = array_merge(
     $theme,
@@ -295,7 +301,6 @@ function swiper_gallery_shortcode($params, $content = null) {
     'fit' => 'cover'
   ), $params, 'swiper-gallery'));
 
-  // print_r($params);
 
 	$content = do_shortcode($content);
 

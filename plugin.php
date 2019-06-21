@@ -6,7 +6,7 @@
  * Description: Swiper Integration for Wordpress
  * Author: Rafael Nowrotek
  * Author URI: http://benignware.com/
- * Version: 0.1.0-beta.5
+ * Version: 0.1.0-beta.6
  *
  */
 
@@ -42,7 +42,8 @@ add_filter('swiper_options', function($options = array(), $params = array()) {
 				'loop',
 				'free_mode',
 				'watch_slides_progress',
-				'watch_slides_visibility'
+				'watch_slides_visibility',
+				'theme'
 			));
 		}, ARRAY_FILTER_USE_KEY),
 		array(

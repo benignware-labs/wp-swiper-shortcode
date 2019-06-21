@@ -10,6 +10,7 @@ import { pickBy } from 'lodash';
 import classnames from 'classnames';
 
 const $themes = Symbol('themes');
+const $theme = Symbol('theme');
 const $instances = Symbol('instances');
 
 export default class Swiper extends Component {
@@ -21,7 +22,17 @@ export default class Swiper extends Component {
   static [$instances] = new WeakMap()
 
   static get themes() {
+    console.log('get themes...', this[$themes]);
     return this[$themes];
+  }
+
+  static get theme() {
+    return this[$theme];
+  }
+
+  static set theme(theme) {
+    console.log('SET THEME: ', theme);
+    this[$theme] = theme;
   }
 
   static getInstance(el) {
@@ -221,7 +232,8 @@ export default class Swiper extends Component {
 
   getNavigation() {
     const { navigation, pagination, scrollbar } = Swiper.getOptions(this.props);
-    const { classes = {} } = Swiper.themes.get(this.props.theme) || {};
+    const theme = this.props.theme || Swiper.theme;
+    const { classes = {} } = Swiper.themes.get(theme) || {};
 
     return (
       <Fragment>

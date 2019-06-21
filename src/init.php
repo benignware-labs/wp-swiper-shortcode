@@ -56,10 +56,12 @@ add_action('init', function() { // phpcs:ignore
 	);
 
 	// Pass image sizes information to the client
+	$options = apply_filters('swiper_options', array(), array());
+
 	wp_localize_script( 'swiper-shortcode-js', 'SwiperSettings',
     array(
 			'data' => json_encode(array(
-				'options' => json_encode(array()),
+				'options' => $options,
 				'themes' => $registered_swiper_themes,
 				'sizes' => get_intermediate_image_sizes()
 			))

@@ -26,7 +26,7 @@ services:
     volumes:
       - wordpress:/var/www/html
       - .:/var/www/html/wp-content/plugins/swiper-shortcode
-      - ./test/fixtures/themes/my-block:/var/www/html/wp-content/themes/swiper-shortcode
+      - ./test/fixtures/themes/swiper-shortcode:/var/www/html/wp-content/themes/swiper-shortcode
       - .uploads:/var/www/html/wp-content/uploads
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -59,7 +59,7 @@ services:
     volumes:
       - wordpress:/var/www/html
       - .:/var/www/html/wp-content/plugins/swiper-shortcode
-      - ./test/fixtures/themes/my-block:/var/www/html/wp-content/themes/swiper-shortcode
+      - ./test/fixtures/themes/swiper-shortcode:/var/www/html/wp-content/themes/swiper-shortcode
       - ./bin/install-wp.sh:/usr/local/bin/install-wp
     links:
       - db

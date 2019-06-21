@@ -7,3 +7,41 @@ Template: twentyseventeen
 Version: 1.0
 Tags:
 */
+
+.swiper-button-next.swiper-button-primary,
+.swiper-button-prev.swiper-button-primary {
+  background-image: none;
+}
+
+.swiper-button-next.swiper-button-primary:before,
+.swiper-button-prev.swiper-button-primary:before {
+  content: '';
+  width: 36px;
+  height: 36px;
+  border-color: currentColor;
+  position: absolute;
+  top: 50%;
+  margin-top: -18px;
+}
+
+.swiper-button-next.swiper-button-primary:before {
+  border-bottom: 3px solid;
+  border-left: 3px solid;
+  transform: rotate(-135deg);
+  right: 10px;
+}
+
+.swiper-button-prev.swiper-button-primary:before {
+  border-bottom: 3px solid;
+  border-left: 3px solid;
+  transform: rotate(45deg);
+  left: 10px;
+}
+
+.swiper-button-primary {
+  color: pink;
+}
+
+.swiper-pagination-primary .swiper-pagination-bullet-active {
+  background: pink;
+}

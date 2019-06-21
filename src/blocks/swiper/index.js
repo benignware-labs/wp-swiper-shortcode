@@ -11,7 +11,12 @@ export { getSwiperControls } from './getSwiperControls';
 
 import remoteSettings from '../../settings';
 
-Object.entries(remoteSettings.themes).forEach((([ name, theme ]) => Swiper.themes.set(name, theme)));
+
+const { themes, options: { theme } } = remoteSettings;
+
+Object.entries(themes).forEach((([ name, theme ]) => Swiper.themes.set(name, theme)));
+
+Swiper.theme = theme;
 
 /**
  * WordPress dependencies
