@@ -127,13 +127,13 @@ function swiper_shortcode($params, $content = null) {
 		'parallax' => false,
 		'thumbs' => null,
 		// Query params
-		'ids' => '',
+		'ids' => null,
 		// 'order' => 'ASC',
     // 'orderby' => 'menu_order ID',
 		'order' => '',
     'orderby' => '',
-    'post_status' => 'inherit',
-    'post_type' => null,
+    'post_status' => 'publish',
+    'post_type' => 'any',
     'post_mime_type' => null,
     'include' => '',
     'exclude' => '',
@@ -300,7 +300,6 @@ function swiper_gallery_shortcode($params, $content = null) {
     'size' => 'large',
     'fit' => 'cover'
   ), $params, 'swiper-gallery'));
-
 
 	$content = do_shortcode($content);
 

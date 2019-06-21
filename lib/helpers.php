@@ -75,6 +75,7 @@ function swiper_shortcode_render_template($template, $format = '', $data = array
 		// Resolve template
 		$directories = array(
 			get_template_directory(),
+      get_stylesheet_directory(),
 			realpath(plugin_dir_path( __FILE__ ) . '../templates')
 		);
 
