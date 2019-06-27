@@ -32,8 +32,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 add_action('init', function() { // phpcs:ignore
 	global $registered_swiper_themes;
 
-	wp_register_script('swiper-js', 'https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js');
-  wp_register_style('swiper-css', 'https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css');
+	// wp_register_script('swiper-js', 'https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js');
+	// wp_register_style('swiper-css', 'https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css');
+
+
+	wp_register_script('swiper-js', plugins_url( 'dist/swiper/js/swiper.min.js', dirname( __FILE__ ))); // Swiper JS
+  wp_register_style('swiper-css', plugins_url( 'dist/swiper/css/swiper.min.css', dirname( __FILE__ ))); // Swiper CSS
 
   wp_enqueue_script('swiper-js');
   wp_enqueue_style('swiper-css');
