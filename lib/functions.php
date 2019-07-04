@@ -1,7 +1,7 @@
 <?php
 
-
 function get_swiper($template, $format = '', $params = array()) {
+
   global $registered_swiper_themes;
 
   $options = array_filter($params);
@@ -40,10 +40,10 @@ function get_swiper($template, $format = '', $params = array()) {
     );
   }
 
-  // Merge back options into params
+  // Merge options back into params
   $params = swiper_shortcode_array_merge_rec(
+    $params,
     swiper_shortcode_snakeify_keys($options),
-    $params
   );
 
 	$output = swiper_shortcode_render_template($template, $format, $params);
@@ -51,7 +51,7 @@ function get_swiper($template, $format = '', $params = array()) {
 	// Create script
 	$script = '';
 
-	$camelized = swiper_shortcode_camelize_keys($options);
+	$camelized = swiper_shortcode_camelize_keys(array_filter($options));
 
 	// ... and serialize to JSON
 	$json = json_encode($camelized, JSON_UNESCAPED_SLASHES);
@@ -60,7 +60,7 @@ function get_swiper($template, $format = '', $params = array()) {
 
   $script.= "<script type=\"text/javascript\">//<![CDATA[\n(function($, Swiper) {\n";
   $script.= "\tvar options = " . $json . ";\n";
-  // $script.= "console.log('INIT SWIPER', options);\n";
+  $script.= "console.log('INIT SWIPER', options);\n";
   $script.= "\tif (options.thumbs) {\n";
   $script.= "\t\tif (typeof options.thumbs.swiper === 'string') {\n";
   $script.= "\t\t\tvar data = $(options.thumbs.swiper).data('swiper-shortcode');\n";
@@ -139,6 +139,13 @@ function swiper_shortcode($params, $content = null) {
     'exclude' => '',
 	), $params, 'swiper');
 
+
+  // Parse booleans
+  $params = array_map(function($value) {
+		return $value === 'false' ? false : ($value === 'true' ? true : $value);
+	}, $params);
+
+  // Transform ids to query params
 	if ( ! empty( $params['ids'] ) ) {
     // 'ids' is explicitly ordered, unless you specify otherwise.
     if ( empty( $params['orderby'] ) ) {
@@ -242,8 +249,8 @@ function swiper_shortcode($params, $content = null) {
 			$GLOBALS['wp_query'] = $wp_query;
 			$wp->register_globals();
 
-
 			$is_query = true;
+
   } else {
 
 		$query_params = array_merge(
@@ -269,10 +276,12 @@ function swiper_shortcode($params, $content = null) {
 
 	ob_start();
 
-  get_swiper($template, $format, array_merge(
-		$attributes,
-		$params
-	));
+  $prms = array_merge(
+		$attributes ?: array(),
+		$params ?: array()
+	);
+
+  get_swiper($template, $format, $prms);
 
   $output = ob_get_contents();
 

@@ -6,7 +6,7 @@
 
 # Install WordPress.
 wp core install \
-  --title="My Block" \
+  --title="Swiper Shortcode" \
   --admin_user="wordpress" \
   --admin_password="wordpress" \
   --admin_email="admin@example.com" \
@@ -17,4 +17,4 @@ wp core install \
 wp option update permalink_structure "/%year%/%monthnum%/%postname%/" --skip-themes --skip-plugins
 
 # Activate plugin.
-wp plugin activate my-block
+wp plugin activate swiper-shortcode

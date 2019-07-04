@@ -98,7 +98,7 @@ function swiper_shortcode_render_template($template, $format = '', $data = array
   return $output;
 }
 
-function swiper_shortcode_array_merge_rec(array $array1, array $array2) {
+function swiper_shortcode_array_merge_rec($array1 = array(), $array2 = array()) {
   $merged = $array1;
 
   foreach ($array2 as $key => & $value) {
