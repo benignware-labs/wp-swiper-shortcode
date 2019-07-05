@@ -7,20 +7,12 @@ function get_swiper($template, $format = '', $params = array()) {
   $options = array_filter($params);
   $options = apply_filters('swiper_options', $options, $params);
 
-  $theme = isset($options['theme']) ? $options['theme'] : $params['theme'];
+
 
   $params = array_merge(
     $params,
 		array(
 			'id' => 'swiper-' . uniqid(),
-      'theme' => $registered_swiper_themes[$theme] ?: array(
-				'classes' => array(
-					'swiper-button-next' => '',
-					'swiper-button-prev' => '',
-					'swiper-pagination' => '',
-					'swiper-scrollbar' => ''
-				)
-			)
 		)
 	);
 
@@ -43,8 +35,25 @@ function get_swiper($template, $format = '', $params = array()) {
   // Merge options back into params
   $params = swiper_shortcode_array_merge_rec(
     $params,
-    swiper_shortcode_snakeify_keys($options),
+    swiper_shortcode_snakeify_keys($options)
   );
+
+
+  $theme = isset($options['theme']) ? $options['theme'] : $params['theme'];
+
+  $params = array_merge(
+    $params,
+		array(
+      'theme' => $registered_swiper_themes[$theme] ?: array(
+				'classes' => array(
+					'swiper-button-next' => '',
+					'swiper-button-prev' => '',
+					'swiper-pagination' => '',
+					'swiper-scrollbar' => ''
+				)
+			)
+		)
+	);
 
 	$output = swiper_shortcode_render_template($template, $format, $params);
 
@@ -59,8 +68,9 @@ function get_swiper($template, $format = '', $params = array()) {
 	$id = $params['id'];
 
   $script.= "<script type=\"text/javascript\">//<![CDATA[\n(function($, Swiper) {\n";
+  // $script.= "$(function() {\n";
   $script.= "\tvar options = " . $json . ";\n";
-  $script.= "console.log('INIT SWIPER', options);\n";
+  // $script.= "console.log('INIT SWIPER', options);\n";
   $script.= "\tif (options.thumbs) {\n";
   $script.= "\t\tif (typeof options.thumbs.swiper === 'string') {\n";
   $script.= "\t\t\tvar data = $(options.thumbs.swiper).data('swiper-shortcode');\n";
@@ -75,7 +85,11 @@ function get_swiper($template, $format = '', $params = array()) {
   $script.= "\tvar swiperElement = document.getElementById('{$id}');\n";
   $script.= "\tvar swiper = new Swiper(swiperElement, options);\n";
   $script.= "\t$(swiperElement).data('swiper-shortcode', { instance: swiper });\n";
+  // $script.= "\tsetTimeout(() => { window.dispatchEvent(new Event('resize')) }, 200);\n";
+
+  // $script.= "})\n";
   $script.= "})(window.jQuery, window.Swiper)\n//]]></script>\n";
+
 
 	// Append script
 	$output.= $script;
@@ -133,6 +147,7 @@ function swiper_shortcode($params, $content = null) {
 		'order' => '',
     'orderby' => '',
     'post_status' => 'publish',
+    'nopaging' => true,
     'post_type' => 'any',
     'post_mime_type' => null,
     'include' => '',
@@ -261,7 +276,8 @@ function swiper_shortcode($params, $content = null) {
 		    'exclude',
 		    'post_type',
 		    'post_mime_type',
-		    'post_status'
+		    'post_status',
+        'nopaging'
 			])),
       array(
         'post__in' => is_array($params['include']) ? $params['include'] : explode(',', $params['include']),
@@ -304,6 +320,7 @@ function swiper_gallery_shortcode($params, $content = null) {
     // Default gallery params
     'format' => 'gallery',
     'post_type' => 'attachment',
+    'post_status' => 'inherit',
     'post_mime_type' => 'image',
     'ids' => is_array($params['ids']) ? implode(',', $params['ids']) : $params['ids'],
     'size' => 'large',
