@@ -10,10 +10,10 @@ function get_swiper($template, $format = '', $params = array()) {
 
 
   $params = array_merge(
-    $params,
 		array(
 			'id' => 'swiper-' . uniqid(),
-		)
+		),
+    $params
 	);
 
   if (is_array($params['thumbs']) || $params['thumbs']) {
