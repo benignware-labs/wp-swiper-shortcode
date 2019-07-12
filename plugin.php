@@ -6,7 +6,7 @@
  * Description: Swiper Integration for Wordpress
  * Author: Rafael Nowrotek
  * Author URI: http://benignware.com/
- * Version: 0.1.0-beta.10
+ * Version: 0.1.0-beta.11
  *
  */
 
@@ -48,7 +48,7 @@ add_filter('swiper_options', function($options = array(), $params = array()) {
 			));
 		}, ARRAY_FILTER_USE_KEY),
 		array(
-			'navigation' => $options['navigation'] && $options['navigation'] !== 'false' ? array_merge(
+			'navigation' => $options['navigation'] ? array_merge(
 				array(
 					'nextEl' => '.swiper-button-next',
 					'prevEl' => '.swiper-button-prev'
