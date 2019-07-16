@@ -6,7 +6,7 @@
  * Description: Swiper Integration for Wordpress
  * Author: Rafael Nowrotek
  * Author URI: http://benignware.com/
- * Version: 0.1.0-beta.12
+ * Version: 0.1.0-beta.13
  *
  */
 
@@ -60,7 +60,10 @@ add_filter('swiper_options', function($options = array(), $params = array()) {
 					'el' => '.swiper-pagination',
 					'clickable' => false
 				),
-				is_array($options['pagination']) ? $options['pagination'] : array()
+				is_array($options['pagination']) ? $options['pagination'] : array(),
+				is_string($options['pagination']) ? array(
+					'type' => $options['pagination']
+				) : array()
 			) : null,
 			'scrollbar' => $options['scrollbar'] ? array_merge(
 				array(
