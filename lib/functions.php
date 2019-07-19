@@ -130,6 +130,7 @@ function swiper_shortcode($params, $content = null) {
 		'format' => '',
 		'theme' => '',
 		// Swiper params
+    'space_between' => 0,
 		'slides_per_view' => 1,
 		'navigation' => true,
 		'pagination' => true,
@@ -153,9 +154,12 @@ function swiper_shortcode($params, $content = null) {
 	), $params, 'swiper');
 
 
-  // Parse booleans
+  // Parse booleans and numbers
   $params = array_map(function($value) {
-		return $value === 'false' ? false : ($value === 'true' ? true : $value);
+    $value = $value === 'false' ? false : ($value === 'true' ? true : $value);
+    $value = is_numeric($value) ? floatval($value) : $value;
+
+		return $value;
 	}, $params);
 
   // Transform ids to query params
