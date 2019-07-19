@@ -98,7 +98,7 @@ add_shortcode('swiper', 'swiper_shortcode');
 add_shortcode('swiper_slide', 'swiper_slide_shortcode');
 add_shortcode('swiper_gallery', 'swiper_gallery_shortcode');
 
-register_swiper_theme('light', array(
+register_swiper_theme('white', array(
 	'classes' => array(
 		'swiper-button-next' => 'swiper-button-white',
 		'swiper-button-prev' => 'swiper-button-white',
@@ -107,7 +107,7 @@ register_swiper_theme('light', array(
 	)
 ));
 
-register_swiper_theme('dark', array(
+register_swiper_theme('black', array(
 	'classes' => array(
 		'swiper-button-next' => 'swiper-button-black',
 		'swiper-button-prev' => 'swiper-button-black',
