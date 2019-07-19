@@ -84,8 +84,6 @@ add_filter('swiper_options', function($options = array(), $params = array()) {
 		)
 	);
 
-
-
 	$options = array_filter($options, function($value) {
 		return $value !== null && !empty($value) && $value !== 'false';
 	});

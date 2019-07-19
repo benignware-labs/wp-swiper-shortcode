@@ -7,8 +7,6 @@ function get_swiper($template, $format = '', $params = array()) {
   $options = array_filter($params);
   $options = apply_filters('swiper_options', $options, $params);
 
-
-
   $params = array_merge(
 		array(
 			'id' => 'swiper-' . uniqid(),
@@ -196,10 +194,10 @@ function swiper_shortcode($params, $content = null) {
 
 			// Create fake posts from slides
 			foreach ($slides as $index => $slide) {
-				$post_id = (100 + $index) * -1;
+				$post_id = -1000 + $index; // negative ID, to avoid clash with a valid post
 
 				$p = new stdClass();
-				$p->ID = $post_id;  // negative ID, to avoid clash with a valid post
+				$p->ID = $post_id;
 				$p->post_author = 1;
 				$p->post_date = current_time( 'mysql' );
 				$p->post_date_gmt = current_time( 'mysql', 1 );
@@ -216,7 +214,7 @@ function swiper_shortcode($params, $content = null) {
 				$wp_post = new WP_Post( $p );
 
 				// Add the fake post to the cache
-				wp_cache_add( $post_id, $wp_post, 'posts' );
+				// wp_cache_add( $post_id, $wp_post, 'posts' );
 
 				$posts[] = $wp_post;
 			}
@@ -263,6 +261,8 @@ function swiper_shortcode($params, $content = null) {
 
 			$GLOBALS['wp_query'] = $wp_query;
 			$wp->register_globals();
+
+
 
 			$is_query = true;
 
