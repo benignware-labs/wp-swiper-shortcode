@@ -42,7 +42,7 @@ function get_swiper($template, $format = '', $params = array()) {
   $params = array_merge(
     $params,
 		array(
-      'theme' => $registered_swiper_themes[$theme] ?: array(
+      'theme' => isset($registered_swiper_themes[$theme]) ?: array(
 				'classes' => array(
 					'swiper-button-next' => '',
 					'swiper-button-prev' => '',
@@ -326,7 +326,7 @@ function swiper_gallery_shortcode($params, $content = null) {
     'post_type' => 'attachment',
     'post_status' => 'inherit',
     'post_mime_type' => 'image',
-    'ids' => is_array($params['ids']) ? implode(',', $params['ids']) : $params['ids'],
+    'ids' => !empty($params['ids']) ? (is_array($params['ids']) ? implode(',', $params['ids']) : $params['ids']) : '',
     'size' => 'large',
     'fit' => 'cover'
   ), $params, 'swiper-gallery'));

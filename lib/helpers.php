@@ -33,14 +33,14 @@ function swiper_shortcode_snakeify_keys($array, $arrayHolder = array()) {
 
   foreach ($array as $key => $val) {
     $str = $key;
-    $str[0] = strtolower($str[0]);
-    $func = create_function('$c', 'return "_" . strtolower($c[1]);');
+    $str = strtolower($str);
+    $func = function($c) {return "_" . strtolower($c[1]);};
     $newKey = preg_replace_callback('/([A-Z])/', $func, $str);
 
     if (!is_array($val)) {
       $result[$newKey] = $val;
     } else {
-      $result[$newKey] = swiper_shortcode_snakeify_keys($val, $result[$newKey]);
+      $result[$newKey] = swiper_shortcode_snakeify_keys($val, (isset($result[$newKey]) ? $result[$newKey] : null ));
     }
   }
   return $result;
@@ -51,13 +51,13 @@ function swiper_shortcode_camelize_keys($array, $arrayHolder = array()) {
 
   foreach ($array as $key => $val) {
     $newKey = @explode('_', $key);
-    array_walk($newKey, create_function('&$v', '$v = ucwords($v);'));
+    array_walk($newKey, function(&$v) {$v = ucwords($v);});
     $newKey = @implode('', $newKey);
     $newKey{0} = strtolower($newKey{0});
     if (!is_array($val)) {
       $result[$newKey] = $val;
     } else {
-      $result[$newKey] = swiper_shortcode_camelize_keys($val, $result[$newKey]);
+      $result[$newKey] = swiper_shortcode_camelize_keys($val, (isset($result[$newKey]) ? $result[$newKey] : null ));
     }
   }
   return $result;
@@ -66,8 +66,8 @@ function swiper_shortcode_camelize_keys($array, $arrayHolder = array()) {
 function swiper_shortcode_render_template($template, $format = '', $data = array()) {
 	$is_absolute_path = $template[0] === DIRECTORY_SEPARATOR || preg_match('~\A[A-Z]:(?![^/\\\\])~i', $template) > 0;
 	$path_parts = pathinfo($template);
-  $template_name = $format ? $path_parts['filename'] . '-' . $format : $path_parts['filename'];
-	$template_ext = $path_parts['extension'] ?: 'php';
+  	$template_name = $format ? $path_parts['filename'] . '-' . $format : $path_parts['filename'];
+	$template_ext = isset($path_parts['extension']) ?: 'php';
 	$template_base = $template_name . '.' . $template_ext;
 	$template_dir = $path_parts['dirname'];
 
