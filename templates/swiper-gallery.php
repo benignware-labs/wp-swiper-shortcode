@@ -10,7 +10,7 @@
             <?php if ($fit): ?>
               style="width: 100%; height: 100%; object-position: center; object-fit: <?= $fit; ?>"
             <?php endif; ?>
-            src="<?= wp_get_attachment_image_src($post->ID, $size)[0] ?>"
+            src="<?= wp_get_attachment_image_src(get_the_ID(), $size)[0] ?>"
           />
         </div>
       <?php endwhile; ?>
