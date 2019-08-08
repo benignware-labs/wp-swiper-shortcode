@@ -44,6 +44,7 @@ const {
 const { createBlock } = wp.blocks;
 
 export const getSwiperControls = (props = {}, attributes = {}, size = 0, options = {}) => {
+	console.log(attributes);
 
 	const { exclude } = {
 		exclude: [],
@@ -111,6 +112,7 @@ export const getSwiperControls = (props = {}, attributes = {}, size = 0, options
 						...attributes,
 						pagination: value ? {
 							type: 'bullets',
+							clickable: true,
 							...(attributes.pagination || {})
 						} : null
 					});

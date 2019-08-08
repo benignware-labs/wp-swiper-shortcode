@@ -58,7 +58,7 @@ add_filter('swiper_options', function($options = array(), $params = array()) {
 			'pagination' => !empty($options['pagination']) ? array_merge(
 				array(
 					'el' => '.swiper-pagination',
-					'clickable' => false
+					'clickable' => true
 				),
 				is_array($options['pagination']) ? $options['pagination'] : array(),
 				is_string($options['pagination']) ? array(

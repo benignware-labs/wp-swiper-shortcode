@@ -68,6 +68,7 @@ function get_swiper($template, $format = '', $params = array()) {
   $script.= "<script type=\"text/javascript\">//<![CDATA[\n(function($, Swiper) {\n";
   // $script.= "$(function() {\n";
   $script.= "\tvar options = " . $json . ";\n";
+  $script.= "\tconsole.log(options);\n";
   // $script.= "console.log('INIT SWIPER', options);\n";
   $script.= "\tif (options.thumbs) {\n";
   $script.= "\t\tif (typeof options.thumbs.swiper === 'string') {\n";
