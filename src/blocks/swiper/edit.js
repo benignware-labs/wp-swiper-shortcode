@@ -88,21 +88,21 @@ export function ColumnsEdit( {
 	const refContainer = useRef(null);
 
 	const handleDocumentClick = event => {
-    const { target } = event;
+		const { target } = event;
 		const container = refContainer.current.closest('*[data-swiper-block-edit-wrapper]') || refContainer.current;
 
-    if (!(target === container || container.contains(target))) {
-			setSelectedClientId(null);
+		if (!(target === container || container.contains(target))) {
+				setSelectedClientId(null);
 		}
-  };
+	};
 
 	useEffect(() => {
-    window.addEventListener('click', handleDocumentClick);
+		window.addEventListener('click', handleDocumentClick);
 
-    return () => {
-      window.removeEventListener('click', handleDocumentClick);
-    };
-  });
+		return () => {
+		  window.removeEventListener('click', handleDocumentClick);
+		};
+	});
 
 	return (
 		<SwiperBlockContext.Provider value={{
@@ -157,7 +157,7 @@ export function ColumnsEdit( {
 			</InspectorControls>
 			<div ref={refContainer} className={className}>
 				<Swiper
-					{...attributes}
+					{...toCamelCase(attributes)}
 					autoplay={null}
 					loop={false}
 					selector=".editor-inner-blocks"
@@ -265,3 +265,13 @@ export default compose(
 		},
 	}))
 )(ColumnsEdit);
+
+function toCamelCase(attributes) {
+	Object.keys(attributes).forEach((snake_case_key) => {
+		if (snake_case_key.includes('_')) {
+			let camelCaseKey = snake_case_key.replace(/(\_\w)/g, function(m){return m[1].toUpperCase();});
+			attributes[camelCaseKey] = attributes[snake_case_key];
+		}
+	});
+	return attributes
+}

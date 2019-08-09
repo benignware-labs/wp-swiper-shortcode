@@ -195,7 +195,7 @@ class GalleryEdit extends Component {
 		return checked ? __( 'Thumbnails are cropped to align.' ) : __( 'Thumbnails are not cropped.' );
 	}
 
-	setSlidesPerViewNumber = (value) => this.setAttributes({ slidesPerView: value });
+	setSlidesPerViewNumber = (value) => this.setAttributes({ slides_per_view: value });
 
 	toggleNavigation = () => this.setAttributes({ navigation: ! this.props.attributes.navigation });
 	getNavigationHelp = (checked) => checked ? __( 'Navigation is displayed' ) : __( 'Navigation is not displayed.' );
@@ -388,9 +388,9 @@ class GalleryEdit extends Component {
 							pagination={null}
 							{...{
 								slidesPerView: 4,
-				        freeMode: true,
-				        watchSlidesVisibility: true,
-				        watchSlidesProgress: true,
+								freeMode: true,
+								watchSlidesVisibility: true,
+								watchSlidesProgress: true,
 								...(thumbs || {})
 							}}
 							style={{ order: 1 }}

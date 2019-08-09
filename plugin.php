@@ -22,6 +22,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once plugin_dir_path( __FILE__ ) . 'lib/helpers.php';
 require_once plugin_dir_path( __FILE__ ) . 'lib/functions.php';
 
+require_once plugin_dir_path( __FILE__ ) . 'features/sidebar.php';
+
 
 /**
  * Block Initializer.
@@ -37,6 +39,8 @@ add_filter('swiper_options', function($options = array(), $params = array()) {
 				'speed',
 				'space_between',
 				'slides_per_view',
+				'slides_per_column',
+				'slides_per_column_fill',
 				'centered_slides',
 				'parallax',
 				'autoplay',
@@ -44,7 +48,9 @@ add_filter('swiper_options', function($options = array(), $params = array()) {
 				'free_mode',
 				'watch_slides_progress',
 				'watch_slides_visibility',
-				'theme'
+				'theme',
+				'breakpoints',
+				'watch_overflow'
 			));
 		}, ARRAY_FILTER_USE_KEY),
 		array(

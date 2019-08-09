@@ -82,6 +82,7 @@ function get_swiper($template, $format = '', $params = array()) {
 
   // $script.= "console.log(Swiper, JSON.stringify(options, null, 2));\n";
   $script.= "\tvar swiperElement = document.getElementById('{$id}');\n";
+  $script.= "\tconsole.log('new swiper', swiperElement, options);\n";
   $script.= "\tvar swiper = new Swiper(swiperElement, options);\n";
   $script.= "\t$(swiperElement).data('swiper-shortcode', { instance: swiper });\n";
   // $script.= "\tsetTimeout(() => { window.dispatchEvent(new Event('resize')) }, 200);\n";
@@ -131,8 +132,10 @@ function swiper_shortcode($params, $content = null) {
 		'format' => '',
 		'theme' => '',
 		// Swiper params
-    'space_between' => 0,
+    	'space_between' => 32, // 2rem
 		'slides_per_view' => 1,
+		'slides_per_column' => 1,
+		'slides_per_column_fill' => 'row',
 		'navigation' => true,
 		'pagination' => true,
 		'scrollbar' => false,
@@ -143,15 +146,22 @@ function swiper_shortcode($params, $content = null) {
 		// Query params
 		'ids' => null,
 		// 'order' => 'ASC',
-    // 'orderby' => 'menu_order ID',
+    	// 'orderby' => 'menu_order ID',
 		'order' => '',
-    'orderby' => '',
-    'post_status' => 'publish',
-    'nopaging' => true,
-    'post_type' => 'any',
-    'post_mime_type' => null,
-    'include' => '',
-    'exclude' => '',
+		'orderby' => '',
+		'post_status' => 'publish',
+		'nopaging' => true,
+		'post_type' => 'any',
+		'post_mime_type' => null,
+		'include' => '',
+		'exclude' => '',
+		'breakpoints' => [
+			'991' => [
+				'slides_per_view' => 1,
+				'slides_per_column' => 1
+			]
+		],
+		'watch_overflow' => true, // disable swiper & hide pagination if only one slide
 	), $params, 'swiper');
 
 
@@ -206,8 +216,8 @@ function swiper_shortcode($params, $content = null) {
 				$p->post_author = 1;
 				$p->post_date = current_time( 'mysql' );
 				$p->post_date_gmt = current_time( 'mysql', 1 );
-				$p->post_title = $slide['title'] ?: '';
-				$p->post_content = $slide['content'] ?: '';
+				$p->post_title = isset($slide['title']) ? $slide['title'] : '';
+				$p->post_content = isset($slide['content']) ? $slide['content'] : '';
 				$p->post_status = 'publish';
 				$p->comment_status = 'closed';
 				$p->ping_status = 'closed';

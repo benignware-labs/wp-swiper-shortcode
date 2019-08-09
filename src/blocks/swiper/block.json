@@ -10,9 +10,17 @@
 			"type": "string",
 			"default": null
 		},
-		"slidesPerView": {
+		"slides_per_view": {
 			"type": "number",
 			"default": 1
+		},
+		"slides_per_column": {
+			"type": "number",
+			"default": 1
+		},
+		"slides_per_column_fill": {
+			"type": "string",
+			"default": "row"
 		},
 		"centeredSlides": {
 			"type": "boolean",
@@ -52,6 +60,19 @@
 		"thumbs": {
 			"type": "object",
 			"default": null
+		},
+		"breakpoints": {
+			"type": "object",
+			"default": {
+				"991": {
+					"slides_per_view": 1,
+					"slides_per_column": 1
+				}
+			}
+		},
+		"watch_overflow": {
+			"type": "boolean",
+			"default": true
 		}
 	}
 }

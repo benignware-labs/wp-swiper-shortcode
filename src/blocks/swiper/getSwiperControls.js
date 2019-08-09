@@ -71,14 +71,28 @@ export const getSwiperControls = (props = {}, attributes = {}, size = 0, options
 			{size > 1 && (
 				<RangeControl
 					label={ __( 'Slides Per View' ) }
-					value={ attributes.slidesPerView }
+					value={ attributes.slides_per_view }
 					onChange={(value) => props.setAttributes({
 						...attributes,
-						slidesPerView: value
+						slides_per_view: value
 					})}
 					min={ 1 }
-					max={ size }
+					max={ Math.ceil(size / attributes.slides_per_column) }
 					required
+				/>
+			)}
+			{size > 1 && (
+				<RangeControl
+					label={ __( 'Slides Per Row' ) }
+					value={ attributes.slides_per_column }
+					onChange={(value) => props.setAttributes({
+						...attributes,
+						slides_per_column: value
+					})}
+					min={ 1 }
+					max={ Math.ceil(size / attributes.slides_per_view) }
+					required
+					help={ __('Changes to this option are not shown in the preview.') }
 				/>
 			)}
 			{/*
