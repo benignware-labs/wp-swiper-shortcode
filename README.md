@@ -95,6 +95,16 @@ add_filter( 'post_thumbnail_html', 'featured_galleries_post_thumbnail_html', 99,
 
 This will render a `swiper_gallery` shortcode with every call to `the_post_thumbnail` in case the current post actually has a featured gallery assigned.
 
+# Gutenberg breaks Wordpress galleries
+
+Simple fix for now is to just deactivate it:
+
+```php
+add_filter('use_block_editor_for_post', function() {
+  return false;
+});
+```
+
 ## Development
 
 Download [Docker CE](https://www.docker.com/get-docker) for your OS.
@@ -112,7 +122,7 @@ Open your browser at [http://localhost:3000](http://localhost:8030).
 Go through Wordpress installation and activate Swiper Shortcode wordpress plugin or install via wpcli:
 
 ```cli
-docker-compose run --rm wp-cli install-wp
+docker-compose run --rm wp install-wp
 ```
 
 ### Useful docker commands

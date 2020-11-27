@@ -3,7 +3,7 @@
 Plugin Name: Swiper Shortcode
 Plugin URI: https://github.com/benignware-labs/wp-swiper-shortcode
 Description: Swiper integration for Wordpress
-Version: 0.0.15
+Version: 0.0.16
 Author: Rafael Nowrotek
 Author URI: http://benignware.com
 Author Email: mail@benignware.com
@@ -13,15 +13,8 @@ Network: false
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
-Copyright 2016-2019 benignware.com
+Copyright 2016-2020 benignware.com
 */
-
-// Gutenberg breaks Wordpress galleries
-
-add_filter('use_block_editor_for_post', function() {
-  return false;
-});
-
 
 require_once('swiper-shortcode-helpers.php');
 require_once('swiper-shortcode-slide.php');
