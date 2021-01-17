@@ -3,7 +3,7 @@
 Plugin Name: Swiper Shortcode
 Plugin URI: https://github.com/benignware-labs/wp-swiper-shortcode
 Description: Swiper integration for Wordpress
-Version: 0.0.16
+Version: 0.0.17
 Author: Rafael Nowrotek
 Author URI: http://benignware.com
 Author Email: mail@benignware.com

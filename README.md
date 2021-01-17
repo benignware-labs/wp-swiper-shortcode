@@ -17,21 +17,21 @@ Place inside post content
 [/swiper]
 ```
 
-#### Embed in a template
-
-Use output buffering in order to embed in a php-template
+#### Use programmatically
 
 ```php
-<?php ob_start('do_shortcode'); ?>
-[swiper autoplay=3000]
-  [swiper_slide]
-    Slide 1
-  [/swiper_slide]
-  [swiper_slide]
-    Slide 2
-  [/swiper_slide]
-[/swiper]
-<?php ob_end_flush(); ?>
+<?php
+	echo do_shortcode(<<<EOT
+		[swiper]
+			[swiper_slide]
+				Slide 1
+			[/swiper_slide]
+			[swiper_slide]
+				Slide 2
+			[/swiper_slide]
+		[/swiper]
+	EOT);
+?>
 ```
 
 ### Attributes

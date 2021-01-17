@@ -1,7 +1,7 @@
 {
   "name": "benignware/wp-swiper-shortcode",
   "description": "Swiper integration for Wordpress",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "type": "wordpress-plugin",
   "license": "MIT",
   "homepage": "http://github.com/benignware-labs/wp-swiper-shortcode",

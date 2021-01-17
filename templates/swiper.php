@@ -8,7 +8,7 @@
     <?php while( have_posts()) : the_post() ?>
       <!-- Slides -->
       <div class="swiper-slide">
-        <?php if (get_the_title()): ?>
+        <?php if (isset($post['title'])): ?>
           <h3><? the_title(); ?></h3>
         <?php endif; ?>
         <?= get_the_content(); ?>
