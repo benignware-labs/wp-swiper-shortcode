@@ -39,20 +39,8 @@ Place inside post content
 Customize the default behaviour by using the `shortcode_atts_swiper`-filter
 
 ```php
-<?php
-function custom_shortcode_atts_swiper($out, $pairs, $atts, $shortcode) {
+add_filter( 'shortcode_atts_swiper', function custom_shortcode_atts_swiper($out, $pairs, $atts, $shortcode) {
   return array_merge($out, array(
-    # Custom attributes
-    'id' => 'swiper-' . uniqid(),
-    'class' => '',
-    'before' => '',
-    'before_content' => '',
-    'after' => '',
-    'after_content' => '<div class="swiper-pagination"></div>'
-      . '<div class="swiper-button-next"></div>'
-      . '<div class="swiper-button-prev"></div>'
-      . '<div class="swiper-scrollbar"></div>',
-    # Swiper options
     'pagination' => array(
       'el' => '.swiper-pagination',
       'clickable' =>  true
@@ -64,9 +52,7 @@ function custom_shortcode_atts_swiper($out, $pairs, $atts, $shortcode) {
     'scrollbar' => false,
     'loop' => true
   ), $atts);
-}
-add_filter( 'shortcode_atts_swiper', 'custom_shortcode_atts_swiper' );
-?>
+});
 ```
 
 ## Recipes

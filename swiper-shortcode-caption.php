@@ -2,7 +2,7 @@
 
 
 /** Swiper Caption
-    Adds caption to slides
+  Adds caption to slides
 */
 
 function wp_swiper_shortcode_caption($atts = array(), $content = "") {

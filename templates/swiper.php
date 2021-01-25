@@ -1,6 +1,6 @@
 <!-- Slider main container -->
 <div
-  <?php foreach ($html_atts as $name => $value): ?>
+  <?php foreach ($attrs as $name => $value): ?>
     <?= $name ?>="<?= $value ?>"
   <?php endforeach; ?>
 >

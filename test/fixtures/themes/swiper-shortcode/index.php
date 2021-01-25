@@ -39,14 +39,7 @@ if ( have_posts() ) {
 
 <?php
 	echo do_shortcode(<<<EOT
-		[swiper]
-			[swiper_slide]
-				Slide 1
-			[/swiper_slide]
-			[swiper_slide]
-				Slide 2
-			[/swiper_slide]
-		[/swiper]
+		[swiper meta_key="slideshow"]
 	EOT);
 ?>
 <?php
